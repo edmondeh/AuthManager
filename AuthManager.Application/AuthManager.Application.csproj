@@ -8,8 +8,6 @@
     <Folder Include="Constants\" />
     <Folder Include="DTOs\Identity\" />
     <Folder Include="DTOs\Settings\" />
-    <Folder Include="Enums\" />
-    <Folder Include="Interfaces\Repositories\" />
     <Folder Include="Mapping\" />
   </ItemGroup>
 

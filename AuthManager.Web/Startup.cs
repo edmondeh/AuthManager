@@ -47,7 +47,7 @@ namespace AuthManager.Web
             services.AddApplicationLayer();
             services.AddInfrastructure(Configuration);
             services.AddPersistenceContexts(Configuration);
-            //services.AddRepositories();
+            services.AddRepositories();
             services.AddSharedInfrastructure(Configuration);
             services.AddMultiLingualSupport();
             services.AddControllersWithViews();
