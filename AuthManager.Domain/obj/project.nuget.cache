@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "iEjv7lMwfxR74YonM5+VRrGmm0YLA6nEOPDXspGYUpfcGGHWpbnqpEzaxyyrcMREQigD7v1CMld1BPeDHMWGzA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\aspnetcorehero.abstractions\\1.0.0\\aspnetcorehero.abstractions.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

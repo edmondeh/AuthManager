@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthManager.Web", "AuthManager.Web\AuthManager.Web.csproj", "{6D96FEF8-FB02-45F4-B9DA-2883EC31950B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E336DE42-3268-4BD3-9CDC-A57D2102DFE2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{85FBF7D0-5E13-4637-9B78-5818ADF0A9FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentations", "Presentations", "{69E72730-1EBD-46F0-BAEB-E485CB42E39D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthManager.Application", "AuthManager.Application\AuthManager.Application.csproj", "{FC2E4610-A0F1-4A22-9443-8D051A0F07ED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthManager.Domain", "AuthManager.Domain\AuthManager.Domain.csproj", "{5F1FF0FF-CBC0-4E60-B2CC-F700E8B5B827}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthManager.Infrastructure.Shared", "AuthManager.Infrastructure.Shared\AuthManager.Infrastructure.Shared.csproj", "{6D19160B-A040-4E87-BF7A-034AA3C696A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManager.Infrastructure", "AuthManager.Infrastructure\AuthManager.Infrastructure.csproj", "{41D795F3-E9D7-4F50-83D2-AB1409336AE2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D96FEF8-FB02-45F4-B9DA-2883EC31950B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D96FEF8-FB02-45F4-B9DA-2883EC31950B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D96FEF8-FB02-45F4-B9DA-2883EC31950B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D96FEF8-FB02-45F4-B9DA-2883EC31950B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC2E4610-A0F1-4A22-9443-8D051A0F07ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC2E4610-A0F1-4A22-9443-8D051A0F07ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC2E4610-A0F1-4A22-9443-8D051A0F07ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC2E4610-A0F1-4A22-9443-8D051A0F07ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F1FF0FF-CBC0-4E60-B2CC-F700E8B5B827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F1FF0FF-CBC0-4E60-B2CC-F700E8B5B827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F1FF0FF-CBC0-4E60-B2CC-F700E8B5B827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F1FF0FF-CBC0-4E60-B2CC-F700E8B5B827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D19160B-A040-4E87-BF7A-034AA3C696A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D19160B-A040-4E87-BF7A-034AA3C696A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D19160B-A040-4E87-BF7A-034AA3C696A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D19160B-A040-4E87-BF7A-034AA3C696A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41D795F3-E9D7-4F50-83D2-AB1409336AE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41D795F3-E9D7-4F50-83D2-AB1409336AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41D795F3-E9D7-4F50-83D2-AB1409336AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41D795F3-E9D7-4F50-83D2-AB1409336AE2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6D96FEF8-FB02-45F4-B9DA-2883EC31950B} = {69E72730-1EBD-46F0-BAEB-E485CB42E39D}
+		{FC2E4610-A0F1-4A22-9443-8D051A0F07ED} = {E336DE42-3268-4BD3-9CDC-A57D2102DFE2}
+		{5F1FF0FF-CBC0-4E60-B2CC-F700E8B5B827} = {E336DE42-3268-4BD3-9CDC-A57D2102DFE2}
+		{6D19160B-A040-4E87-BF7A-034AA3C696A1} = {85FBF7D0-5E13-4637-9B78-5818ADF0A9FC}
+		{41D795F3-E9D7-4F50-83D2-AB1409336AE2} = {85FBF7D0-5E13-4637-9B78-5818ADF0A9FC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BFA2DD23-C206-423B-BA5B-2C51C26D98AE}
+	EndGlobalSection
+EndGlobal
