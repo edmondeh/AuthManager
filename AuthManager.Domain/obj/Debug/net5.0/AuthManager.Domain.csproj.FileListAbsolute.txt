@@ -1,0 +1,12 @@
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Domain\bin\Debug\net5.0\AuthManager.Domain.deps.json
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Domain\bin\Debug\net5.0\AuthManager.Domain.dll
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Domain\bin\Debug\net5.0\ref\AuthManager.Domain.dll
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Domain\bin\Debug\net5.0\AuthManager.Domain.pdb
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Domain\obj\Debug\net5.0\AuthManager.Domain.csprojAssemblyReference.cache
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Domain\obj\Debug\net5.0\AuthManager.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Domain\obj\Debug\net5.0\AuthManager.Domain.AssemblyInfoInputs.cache
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Domain\obj\Debug\net5.0\AuthManager.Domain.AssemblyInfo.cs
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Domain\obj\Debug\net5.0\AuthManager.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Domain\obj\Debug\net5.0\AuthManager.Domain.dll
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Domain\obj\Debug\net5.0\ref\AuthManager.Domain.dll
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Domain\obj\Debug\net5.0\AuthManager.Domain.pdb

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "y19yuoIAbYPmV54OEPo2W38arO6hdxfJ7+RO3g7oOJM3YtF8XapSS+CMyiYtEgoDqQke/sPPnM9jzgjDUdDf3g==",
+  "dgSpecHash": "CDUHgAfG4v5Q4i67Qa/+GCdbqalnpbCmycrPBhqWXxjRDeoDjtLe7CkTLsIWGti7Zlk511LpvjudAHlvJHX3Aw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\AuthManager.Infrastructure.Shared.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\fluentvalidation\\10.3.0\\fluentvalidation.10.3.0.nupkg.sha512",
+    "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.0\\fluentvalidation.dependencyinjectionextensions.10.3.0.nupkg.sha512",
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.8\\microsoft.entityframeworkcore.5.0.8.nupkg.sha512",
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.8\\microsoft.entityframeworkcore.abstractions.5.0.8.nupkg.sha512",

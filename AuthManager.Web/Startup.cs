@@ -3,7 +3,6 @@ using AspNetCoreHero.ToastNotification.Extensions;
 using AuthManager.Application.Extensions;
 using AuthManager.Infrastructure.Extensions;
 using AuthManager.Web.Abstractions;
-using AuthManager.Web.Data;
 using AuthManager.Web.Extensions;
 using AuthManager.Web.Services;
 using FluentValidation.AspNetCore;
@@ -31,10 +30,10 @@ namespace AuthManager.Web
     {
         public Startup(IConfiguration configuration)
         {
-            _configuration = configuration;
+            Configuration = configuration;
         }
 
-        public IConfiguration _configuration { get; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -46,30 +45,21 @@ namespace AuthManager.Web
                 o.HasRippleEffect = true;
             });
             services.AddApplicationLayer();
-            services.AddInfrastructure(_configuration);
-            services.AddPersistenceContexts(_configuration);
+            services.AddInfrastructure(Configuration);
+            services.AddPersistenceContexts(Configuration);
             //services.AddRepositories();
-            services.AddSharedInfrastructure(_configuration);
+            services.AddSharedInfrastructure(Configuration);
             services.AddMultiLingualSupport();
             services.AddControllersWithViews();
-            services.AddControllersWithViews().AddFluentValidation(fv =>
-            {
-                fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-                fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
-            });
+            //services.AddControllersWithViews().AddFluentValidation(fv =>
+            //{
+            //    fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            //    fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+            //});
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
             services.AddScoped<IViewRenderService, ViewRenderService>();
-
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddDatabaseDeveloperPageExceptionFilter();
-
-            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
-            //services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

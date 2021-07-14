@@ -67,4 +67,3 @@ namespace AuthManager.Infrastructure.DbContexts
         }
     }
 }
-}

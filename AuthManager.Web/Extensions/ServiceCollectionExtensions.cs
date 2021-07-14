@@ -1,5 +1,5 @@
 ﻿using AuthManager.Web.Services;
-using AuthManager.Application.DTOs.Settings;
+//using AuthManager.Application.DTOs.Settings;
 using AuthManager.Application.Interfaces.Shared;
 using AuthManager.Infrastructure.DbContexts;
 using AuthManager.Infrastructure.Identity.Models;

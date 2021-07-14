@@ -414,3 +414,11 @@ C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Web\bin\Debug\net
 C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Web\bin\Debug\net5.0\Serilog.Sinks.Async.dll
 C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Web\bin\Debug\net5.0\Serilog.Sinks.Console.dll
 C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Web\bin\Debug\net5.0\Serilog.Sinks.File.dll
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Web\bin\Debug\net5.0\libman.json
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Web\bin\Debug\net5.0\FluentValidation.dll
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Web\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Web\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Web\bin\Debug\net5.0\AuthManager.Infrastructure.Shared.pdb
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Web\bin\Debug\net5.0\AuthManager.Infrastructure.pdb
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Web\bin\Debug\net5.0\AuthManager.Application.pdb
+C:\Users\Sony Beshi Elect\source\repos\AuthManager\AuthManager.Web\bin\Debug\net5.0\AuthManager.Domain.pdb

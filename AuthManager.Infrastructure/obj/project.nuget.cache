@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vmWUgrIst40UBuZoIuZqZs0/2/sE/dHmVivfmYJSUn0IJCLrLZIX/sE2T59c5hMMDsABibDtOvjmm4ZU6p7WVw==",
+  "dgSpecHash": "KTKspqTPFZ0WBHIg8TCpLoY8BQW+6jqxQZnTxlM7RaoPC1Vj/etzvHDkS5deAgygIUESEHfAVMVnpWU5B4QFvA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\fluentvalidation\\10.3.0\\fluentvalidation.10.3.0.nupkg.sha512",
+    "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.0\\fluentvalidation.dependencyinjectionextensions.10.3.0.nupkg.sha512",
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.8\\microsoft.aspnetcore.cryptography.internal.5.0.8.nupkg.sha512",
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.8\\microsoft.aspnetcore.cryptography.keyderivation.5.0.8.nupkg.sha512",
