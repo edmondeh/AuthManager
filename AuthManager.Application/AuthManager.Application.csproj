@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Constants\" />
     <Folder Include="DTOs\Identity\" />
     <Folder Include="DTOs\Settings\" />
     <Folder Include="Mapping\" />
