@@ -6111,11 +6111,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj",
+      "projectUniqueName": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj",
       "projectName": "AuthManager.Infrastructure",
-      "projectPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj",
+      "projectPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\obj\\",
+      "outputPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -6138,11 +6138,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj": {
-              "projectPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj"
+            "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj": {
+              "projectPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj"
             },
-            "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj": {
-              "projectPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj"
+            "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj": {
+              "projectPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj"
             }
           }
         }

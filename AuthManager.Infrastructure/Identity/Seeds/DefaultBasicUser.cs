@@ -26,7 +26,7 @@ namespace AuthManager.Infrastructure.Identity.Seeds
                 var user = await userManager.FindByEmailAsync(defaultUser.Email);
                 if (user == null)
                 {
-                    await userManager.CreateAsync(defaultUser, "Password1");
+                    await userManager.CreateAsync(defaultUser, "Password1.");
                     await userManager.AddToRoleAsync(defaultUser, Roles.User.ToString());
                 }
             }

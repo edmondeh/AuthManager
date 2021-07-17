@@ -26,6 +26,7 @@ namespace AuthManager.Infrastructure.Identity.Seeds
         private async static Task SeedClaimsForSuperAdmin(this RoleManager<IdentityRole> roleManager)
         {
             var adminRole = await roleManager.FindByNameAsync("SuperAdmin");
+            await roleManager.AddPermissionClaim(adminRole, "Dashboard");
             await roleManager.AddPermissionClaim(adminRole, "Users");
         }
 
@@ -47,7 +48,7 @@ namespace AuthManager.Infrastructure.Identity.Seeds
                 var user = await userManager.FindByEmailAsync(defaultUser.Email);
                 if (user == null)
                 {
-                    await userManager.CreateAsync(defaultUser, "Password1");
+                    await userManager.CreateAsync(defaultUser, "Password1.");
                     await userManager.AddToRoleAsync(defaultUser, Roles.User.ToString());
                     await userManager.AddToRoleAsync(defaultUser, Roles.Moderator.ToString());
                     await userManager.AddToRoleAsync(defaultUser, Roles.Admin.ToString());

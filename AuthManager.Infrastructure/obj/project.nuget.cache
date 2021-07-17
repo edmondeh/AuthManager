@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KTKspqTPFZ0WBHIg8TCpLoY8BQW+6jqxQZnTxlM7RaoPC1Vj/etzvHDkS5deAgygIUESEHfAVMVnpWU5B4QFvA==",
+  "dgSpecHash": "GqGsBz4x7aCGZ9WWdSN/r0484k64nvfVIHvwQ/UPgWapxd8n2FggDS2QRDeuCP+0fTVKeVaBpFKk7FAdIhIfUQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj",
+  "projectFilePath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\aspnetcorehero.abstractions\\1.0.0\\aspnetcorehero.abstractions.1.0.0.nupkg.sha512",
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\aspnetcorehero.entityframeworkcore.audittrail\\1.0.0\\aspnetcorehero.entityframeworkcore.audittrail.1.0.0.nupkg.sha512",

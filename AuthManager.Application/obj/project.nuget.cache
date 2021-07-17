@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ABTrmA9xtRryKjTeSD+7NWyCp4k27kksGq3MkVbdoSPkjsxmBbE8uRK7jteXHmzvKDCPwg5iDgQywkSHHUyURg==",
+  "dgSpecHash": "32SX3caWNlr2MItZvQDDjgestZMRAgRNQvBrrfQQE75aDX0KC0lSD13iBX1cVMp5cDruvV9FI9Rv7Fx7bfRylA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj",
+  "projectFilePath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\aspnetcorehero.abstractions\\1.0.0\\aspnetcorehero.abstractions.1.0.0.nupkg.sha512",
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\aspnetcorehero.results\\1.1.1\\aspnetcorehero.results.1.1.1.nupkg.sha512",

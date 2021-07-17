@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Web\\AuthManager.Web.csproj": {}
+    "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Web\\AuthManager.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj": {
+    "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj",
+        "projectUniqueName": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj",
         "projectName": "AuthManager.Application",
-        "projectPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj",
+        "projectPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj",
         "packagesPath": "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Application\\obj\\",
+        "outputPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -34,8 +34,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj": {
-                "projectPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj"
+              "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj": {
+                "projectPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj"
               }
             }
           }
@@ -98,14 +98,14 @@
         }
       }
     },
-    "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj": {
+    "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj",
+        "projectUniqueName": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj",
         "projectName": "AuthManager.Domain",
-        "projectPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj",
+        "projectPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj",
         "packagesPath": "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Domain\\obj\\",
+        "outputPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -164,14 +164,14 @@
         }
       }
     },
-    "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\AuthManager.Infrastructure.Shared.csproj": {
+    "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\AuthManager.Infrastructure.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\AuthManager.Infrastructure.Shared.csproj",
+        "projectUniqueName": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\AuthManager.Infrastructure.Shared.csproj",
         "projectName": "AuthManager.Infrastructure.Shared",
-        "projectPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\AuthManager.Infrastructure.Shared.csproj",
+        "projectPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\AuthManager.Infrastructure.Shared.csproj",
         "packagesPath": "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\obj\\",
+        "outputPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -194,8 +194,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj": {
-                "projectPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj"
+              "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj": {
+                "projectPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj"
               }
             }
           }
@@ -228,14 +228,14 @@
         }
       }
     },
-    "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj": {
+    "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj",
+        "projectUniqueName": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj",
         "projectName": "AuthManager.Infrastructure",
-        "projectPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj",
+        "projectPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\obj\\",
+        "outputPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -258,11 +258,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj": {
-                "projectPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj"
+              "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj": {
+                "projectPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Application\\AuthManager.Application.csproj"
               },
-              "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj": {
-                "projectPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj"
+              "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj": {
+                "projectPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Domain\\AuthManager.Domain.csproj"
               }
             }
           }
@@ -327,14 +327,14 @@
         }
       }
     },
-    "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Web\\AuthManager.Web.csproj": {
+    "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Web\\AuthManager.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Web\\AuthManager.Web.csproj",
+        "projectUniqueName": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Web\\AuthManager.Web.csproj",
         "projectName": "AuthManager.Web",
-        "projectPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Web\\AuthManager.Web.csproj",
+        "projectPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Web\\AuthManager.Web.csproj",
         "packagesPath": "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Web\\obj\\",
+        "outputPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -357,11 +357,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\AuthManager.Infrastructure.Shared.csproj": {
-                "projectPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\AuthManager.Infrastructure.Shared.csproj"
+              "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\AuthManager.Infrastructure.Shared.csproj": {
+                "projectPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\AuthManager.Infrastructure.Shared.csproj"
               },
-              "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj"
+              "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj": {
+                "projectPath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure\\AuthManager.Infrastructure.csproj"
               }
             }
           }

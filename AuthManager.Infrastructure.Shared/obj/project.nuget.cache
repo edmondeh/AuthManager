@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CDUHgAfG4v5Q4i67Qa/+GCdbqalnpbCmycrPBhqWXxjRDeoDjtLe7CkTLsIWGti7Zlk511LpvjudAHlvJHX3Aw==",
+  "dgSpecHash": "mLTe/gevkcq7uJP2A9lmj65RuRmm6VplbRmJ9QCYuZl4GTqFwQ5FRto4C85zszd4qftaSnqN6I++Y5NH7NvyGA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sony Beshi Elect\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\AuthManager.Infrastructure.Shared.csproj",
+  "projectFilePath": "D:\\Visual Studio Projects\\source\\repos\\AuthManager\\AuthManager.Infrastructure.Shared\\AuthManager.Infrastructure.Shared.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\aspnetcorehero.abstractions\\1.0.0\\aspnetcorehero.abstractions.1.0.0.nupkg.sha512",
     "C:\\Users\\Sony Beshi Elect\\.nuget\\packages\\aspnetcorehero.results\\1.1.1\\aspnetcorehero.results.1.1.1.nupkg.sha512",

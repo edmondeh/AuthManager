@@ -12,11 +12,13 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Net.Mail;
+using AuthManager.Web.Abstractions;
 
 namespace AuthManager.Web.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class LoginModel : PageModel
+    public class LoginModel : BasePageModel<LoginModel>
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -40,6 +42,8 @@ namespace AuthManager.Web.Areas.Identity.Pages.Account
 
         [TempData]
         public string ErrorMessage { get; set; }
+
+        public const string Error = "Error";
 
         public class InputModel
         {
@@ -80,32 +84,81 @@ namespace AuthManager.Web.Areas.Identity.Pages.Account
         
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
+                var userName = Input.Email;
+                if (IsValidEmail(Input.Email))
                 {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    var userCheck = await _userManager.FindByEmailAsync(Input.Email);
+                    if (userCheck != null)
+                    {
+                        userName = userCheck.UserName;
+                    }
                 }
-                if (result.RequiresTwoFactor)
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
                 {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToPage("./Lockout");
+                    if (!user.IsActive)
+                    {
+                        return RedirectToPage("./Deactivated");
+                    }
+                    else if (!user.EmailConfirmed)
+                    {
+                        _notyf.Error("Email Not Confirmed.");
+                        ModelState.AddModelError(Error, "Email Not Confirmed.");
+                        return Page();
+                    }
+                    else
+                    {
+
+                        // This doesn't count login failures towards account lockout
+                        // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                        var result = await _signInManager.PasswordSignInAsync(userName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                        if (result.Succeeded)
+                        {
+                            _logger.LogInformation("User logged in.");
+                            _notyf.Success($"Logged in as {userName}.");
+                            return LocalRedirect(returnUrl);
+                        }
+                        if (result.RequiresTwoFactor)
+                        {
+                            return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                        }
+                        if (result.IsLockedOut)
+                        {
+                            _logger.LogWarning("User account locked out.");
+                            _notyf.Warning("User account locked out.");
+                            return RedirectToPage("./Lockout");
+                        }
+                        else
+                        {
+                            _notyf.Error("Invalid login attempt.");
+                            ModelState.AddModelError(Error, "Invalid login attempt.");
+                            return Page();
+                        }
+                    }
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return Page();
+                    _notyf.Error("Email / Username Not Found.");
+                    ModelState.AddModelError(Error, "Email / Username Not Found.");
                 }
             }
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        public bool IsValidEmail(string emailaddress)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(emailaddress);
+
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
     }
 }

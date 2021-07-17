@@ -3,83 +3,96 @@
 
 @{
     ViewData["Title"] = "Log in";
+    Layout = "/Areas/Identity/Pages/_Layout.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
+@using AuthManager.Web.Views.Shared.Components.Error;
+
+<div class="login-box">
+    <div class="login-logo">
+        <a href="/"><b>Auth Manager</b> <!-- Login --></a>
+    </div>
+    <div>
+        @(await Component.InvokeAsync<ErrorViewComponent>())
+    </div>
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+
+            <form id="account" method="post" onsubmit="return validateRecaptcha();">
+                <div class="input-group">
+                    <input class="form-control" placeholder="Email or Username" id="name" asp-for="Input.Email" required autofocus>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                <div class="input-group mt-3">
+                    <input class="form-control" placeholder="Password" id="password" asp-for="Input.Password" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                @*@if (env('RECAPTCHA'))*@
+                @*<div class="t-c">*@
+                @*<div class="g-recaptcha mb-3" data-sitekey="{env('GOOGLE_RECAPTCHA_KEY')}}">
+                    </div>*@
+                @*@if ($errors->has('g-recaptcha-response'))
+                    <span class="help-block">
+                        { $errors->first('g-recaptcha-response') }}
+                    </span>
+                    @endif*@
+                @*</div>*@
+                @*@endif*@
+                <div class="row mt-3">
+                    <div class="col-8">
+                        @*@if (env('SHOW_REMEMBER_ME', 'true') == true)*@
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="remember" asp-for="Input.RememberMe">
+                            <label for="remember">
+                                Remember Me @*@Html.DisplayNameFor(m => m.Input.RememberMe)*@
+                            </label>
+                        </div>
+                        @*@endif*@
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    </div>
                 </div>
             </form>
-        </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to log in.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
+
+            <div class="social-auth-links text-center mb-3">
+
+            </div>
+            @*@if(env('SHOW_FORGOT_PASSWORD', 'true') == true)*@
+            <p class="mb-1">
+                <a id="forgot-password" asp-page="./ForgotPassword">I forgot my password</a>
+            </p>
+            @*@endif*@
+            @*@if(env('ALLOW_REGISTRATION', 'true') == true)*@
+            <p class="mb-0">
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-center">Register a new membership</a>
+            </p>
+            @*@endif*@
+        </div>
     </div>
 </div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+@section Scripts
+{
+    @*<partial name="_ValidationScriptsPartial" />*@
+    <script>
+        function validateRecaptcha() {
+            var response = grecaptcha.getResponse();
+            if (response.length === 0) {
+                alert("You need to fill the captcha");
+                return false;
+            }
+        }
+    </script>
 }
