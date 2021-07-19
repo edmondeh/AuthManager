@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AspNetCoreHero.Boilerplate.Web.Helpers
+namespace AuthManager.Web.Helpers
 {
     [HtmlTargetElement(Attributes = "is-active-route")]
     public class ActiveRouteTagHelper : TagHelper

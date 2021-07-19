@@ -1,0 +1,159 @@
+﻿@model AuthManager.Infrastructure.Identity.Models.ApplicationUser
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a asp-area="Home" asp-controller="Home" class="brand-link">
+        <img src="~/assets/img/logo_small.png" alt="Auth Manager Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Auth Manager</span>
+    </a>
+
+    <div class="sidebar">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="~/assets/img/default-user-image.png" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="/admin/profile" class="d-block">@Model.FirstName @Model.LastName</a>
+            </div>
+        </div>
+
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar nav-flat flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a is-active-route asp-area="Admin" asp-controller="Dashboard" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/chat" class="nav-link">
+                        <i class="nav-icon fas fa-comments"></i>
+                        <p>
+                            Chat
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/users" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Users
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/roles" class="nav-link">
+                        <i class="nav-icon fas fa-user-tag"></i>
+                        <p>
+                            Roles
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/permissions" class="nav-link">
+                        <i class="nav-icon fas fa-unlock"></i>
+                        <p>
+                            Permissions
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/activitylog" class="nav-link">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>
+                            Activity Log
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/notifications" class="nav-link">
+                        <i class="nav-icon fas fa-flag"></i>
+                        <p>
+                            Notifications
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Settings
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/admin/settings" class="nav-link">
+                                <i class="far fas fa-arrow-right nav-icon"></i>
+                                <p>General</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/auth" class="nav-link">
+                                <i class="far fas fa-arrow-right fa-arrow-circle-right1 nav-icon"></i>
+                                <p>Auth</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/social" class="nav-link }">
+                                <i class="far fas fa-arrow-right fa-arrow-circle-right1 nav-icon"></i>
+                                <p>Social Logins</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/settings/notifications') }}" class="nav-link">
+                                <i class="far fas fa-arrow-right fa-arrow-circle-right1 nav-icon"></i>
+                                <p>Notifications</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/email" class="nav-link">
+                                <i class="far fas fa-arrow-right fa-arrow-circle-right1 nav-icon"></i>
+                                <p>Email</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/backup" class="nav-link">
+                                <i class="far fas fa-arrow-right fa-arrow-circle-right1 nav-icon"></i>
+                                <p>Backup</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- <li class="nav-item has-treeview menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Starter Pages
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Active Page</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Inactive Page</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Simple Link
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li> -->
+            </ul>
+        </nav>
+    </div>
+</aside>

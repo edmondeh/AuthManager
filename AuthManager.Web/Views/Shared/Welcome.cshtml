@@ -98,7 +98,7 @@
         <div class="top-right links">
             @if (User.Identity.IsAuthenticated)
             {
-                <a href="/admin">Admin</a>
+                <a asp-area="Admin" asp-controller="Dashboard">Admin</a>
             }
             else
             {

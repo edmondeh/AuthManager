@@ -33,6 +33,11 @@ namespace AuthManager.Web.Extensions
 
         private static void AddAuthenticationScheme(this IServiceCollection services, IConfiguration configuration)
         {
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Login";
+                options.AccessDeniedPath = "/AccessDenied";
+            });
             services.AddMvc(o =>
             {
                 //Add Authentication to all Controllers by default.

@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/register"
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
@@ -84,7 +84,16 @@
             </form>
 
             <div class="social-auth-links text-center">
-
+                <p>- OR -</p>
+                <a href="https://www.facebook.com/" class="btn btn-block btn-primary">
+                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                </a>
+                <a href="https://www.google.com/" class="btn btn-block btn-danger">
+                    <i class="fab fa-google mr-2"></i> Sign in using Google
+                </a>
+                <a href="https://www.github.com" class="btn btn-block btn-github">
+                    <i class="fab fa-github mr-2"></i> Sign in using Github
+                </a>
             </div>
 
             <a asp-area="Identity" asp-page="/Account/Login" class="text-center mt-3">I already have a membership</a>

@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/login"
 @model LoginModel
 
 @{
@@ -65,8 +65,17 @@
             </form>
 
             <div class="social-auth-links text-center mb-3">
-
-            </div>
+                <p>- OR -</p>
+                    <a href="https://www.facebook.com/" class="btn btn-block btn-primary">
+                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                    </a>
+                        <a href="https://www.google.com/" class="btn btn-block btn-danger">
+                            <i class="fab fa-google mr-2"></i> Sign in using Google
+                        </a>
+                        <a href="https://www.github.com" class="btn btn-block btn-github">
+                            <i class="fab fa-github mr-2"></i> Sign in using Github
+                        </a>
+                    </div>
             <p class="mb-1">
                 <a id="forgot-password" asp-page="./ForgotPassword">I forgot my password</a>
             </p>

@@ -8,9 +8,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AuthManager.Web.Controllers
+namespace AuthManager.Web.Areas.Home.Controllers
 {
     [AllowAnonymous]
+    [Area("Home")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

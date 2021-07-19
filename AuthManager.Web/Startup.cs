@@ -88,7 +88,7 @@ namespace AuthManager.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{area=Home}/{controller=Home}/{action=Index}/{id?}");
                 //endpoints.MapControllerRoute(
                 //    name: "default",
                 //    pattern: "{area=Dashboard}/{controller=Home}/{action=Index}/{id?}");

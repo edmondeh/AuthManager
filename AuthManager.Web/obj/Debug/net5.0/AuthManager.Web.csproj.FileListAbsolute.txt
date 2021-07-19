@@ -1018,3 +1018,9 @@ D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net
 D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Views\Shared\Welcome.cshtml.g.cs
 D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Views\Shared\_LayoutOld.cshtml.g.cs
 D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\RegisterOld.cshtml.g.cs
+D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Dashboard\Index.cshtml.g.cs
+D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Views\Shared\Components\Footer\Default.cshtml.g.cs
+D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Views\Shared\Components\NavBar\Default.cshtml.g.cs
+D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Views\Shared\Components\SideBar\Default.cshtml.g.cs
+D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Views\Shared\_Scripts.cshtml.g.cs
+D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Views\Shared\_Styles.cshtml.g.cs
