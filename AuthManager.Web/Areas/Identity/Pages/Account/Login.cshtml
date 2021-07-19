@@ -51,14 +51,12 @@
                 @*@endif*@
                 <div class="row mt-3">
                     <div class="col-8">
-                        @*@if (env('SHOW_REMEMBER_ME', 'true') == true)*@
                         <div class="icheck-primary">
                             <input type="checkbox" id="remember" asp-for="Input.RememberMe">
                             <label for="remember">
                                 Remember Me @*@Html.DisplayNameFor(m => m.Input.RememberMe)*@
                             </label>
                         </div>
-                        @*@endif*@
                     </div>
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary btn-block">Sign In</button>
@@ -69,16 +67,12 @@
             <div class="social-auth-links text-center mb-3">
 
             </div>
-            @*@if(env('SHOW_FORGOT_PASSWORD', 'true') == true)*@
             <p class="mb-1">
                 <a id="forgot-password" asp-page="./ForgotPassword">I forgot my password</a>
             </p>
-            @*@endif*@
-            @*@if(env('ALLOW_REGISTRATION', 'true') == true)*@
             <p class="mb-0">
                 <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-center">Register a new membership</a>
             </p>
-            @*@endif*@
         </div>
     </div>
 </div>

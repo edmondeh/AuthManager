@@ -1,4 +1,5 @@
 ﻿using AuthManager.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace AuthManager.Web.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,7 +22,7 @@ namespace AuthManager.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View("Welcome");
         }
 
         public IActionResult Privacy()
