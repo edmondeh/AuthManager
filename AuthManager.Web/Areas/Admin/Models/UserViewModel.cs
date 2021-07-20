@@ -1,4 +1,7 @@
-﻿namespace AuthManager.Web.Areas.Admin.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace AuthManager.Web.Areas.Admin.Models
 {
     public class UserViewModel
     {
@@ -13,6 +16,8 @@
 
         public byte[] ProfilePicture { get; set; }
         public bool EmailConfirmed { get; set; }
+        public IEnumerable<string> RoleNames { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public string FullName
         {

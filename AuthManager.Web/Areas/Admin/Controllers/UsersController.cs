@@ -26,17 +26,34 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         [HttpGet("[area]/[controller]")]
         public async Task<IActionResult> Index()
         {
+            var allUsersWithRoles = new List<UserViewModel>();
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
             var allUsersExceptCurrentUser = await _userManager.Users.Where(a => a.Id != currentUser.Id).ToListAsync();
-            var model = _mapper.Map<IEnumerable<UserViewModel>>(allUsersExceptCurrentUser);
-            return View(model);
+
+            foreach (var user in allUsersExceptCurrentUser)
+            {
+                var users = _mapper.Map<UserViewModel>(user);
+                allUsersWithRoles.Add(users);
+            }
+
+            foreach (var user in allUsersWithRoles)
+            {
+                user.RoleNames = await _userManager.GetRolesAsync(await _userManager.Users.FirstAsync(s => s.UserName == user.UserName));
+            }
+
+            return View(allUsersWithRoles);
         }
 
         // GET: UsersController/Details/5
         [HttpGet("[area]/[controller]/{id?}")]
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(string id)
         {
-            return View();
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            var userVM = _mapper.Map<UserViewModel>(user);
+
+            userVM.RoleNames = await _userManager.GetRolesAsync(user);
+
+            return View(userVM);
         }
 
         // GET: UsersController/Create

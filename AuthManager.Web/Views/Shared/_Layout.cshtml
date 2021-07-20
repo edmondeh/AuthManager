@@ -11,7 +11,7 @@
 
     <title>Auth Manager • @ViewData["Title"]</title>
 
-    <partial name="_Styles">
+    <partial name="_Styles" />
     @await RenderSectionAsync("Css", required: false)
 </head>
 <body class="hold-transition sidebar-mini pace-primary">
@@ -27,7 +27,7 @@
         @(await Component.InvokeAsync<FooterViewComponent>())
     </div>
     
-    <partial name="_Scripts">
+    <partial name="_Scripts" />
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
