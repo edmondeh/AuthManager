@@ -1,5 +1,160 @@
-﻿@{
+﻿@inject AuthManager.Application.Interfaces.Shared.ITotalUsersService TotalUsers
+@{
     Layout = "_Layout";
+    ViewData["Title"] = "Dashboard";
 }
 
-<h1>Hello</h1>
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">@ViewData["Title"]</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Home</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@TotalUsers.OnlineUsers @*{ Cache::get('online') }}*@</h3>
+
+                            <p>Online Users</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-user-clock"></i>
+                        </div>
+                        <!-- <a href="{ route('admin.users.online')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>@TotalUsers.NewUsers @*{ $last_15_days }}*@</h3>
+
+                            <p>New Users</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <!-- <a href="{ route('admin.users.index', ['users' => 'new']) }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>@TotalUsers.ActiveUsers @*{ $active_users }}*@</h3>
+
+                            <p>Active Users</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <!-- <a href="{ route('admin.users.index', ['status' => 'active']) }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>@TotalUsers.TotlaUsers @*{ $users }}*@</h3>
+
+                            <p>Total Users</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <!-- <a href="{ route('admin.users.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Users by month</h5>
+                            <p class="card-text"></p>
+                            <div>
+                                @*{!! $usersChart->container() !!}*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <!-- <div class="card-header">
+                            <h5 class="m-0">Last registred users</h5>
+                        </div> -->
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">Online users</h5>
+                            <table class="table table-striped1 table-bordered1 table-sm table-borderless1">
+                                <tbody>
+                                    @*@foreach ($users_all as $user)
+                                        @if (Cache::has('user-is-online-'. $user->id))
+                                        <tr>
+                                            <td>
+                                                <img class="img-avatar rounded-circle" src="{ $user->getMedia('user-image')->last() ? asset($user->getMedia('user-image')->last()->getUrl('avatar')) : asset('assets/img/default-user-image.png') }}" alt="{ $user->first_name }} { $user->last_name }}" style="float:left;">{ $user->first_name }} { $user->last_name }}<br>
+                                                <small>Logged in @foreach ($user->activity()->where('message', 'Logged In.')->latest()->take(1)->get() as $a) { { $a->created_at->format("M d, H:m:s") } } @endforeach</small>
+                                            </td>
+                                            <td>{ $user->email }}</td>
+                                            <td>@foreach ($user->activity()->where('message', 'Logged In.')->latest()->take(1)->get() as $a) { { $a->ip_address } } @endforeach</td>
+                                            <td>@foreach ($user->roles()->pluck('name') as $role) <span class="badge badge-secondary">{ ucfirst($role) }}</span>@endforeach</td>
+                                        </tr>
+                                        @endif
+                                    @endforeach*@
+                                        <tr>
+                                            <td>
+                                                <img class="img-avatar rounded-circle" src="~/assets/img/default-user-image.png" alt="User Name" style="float:left;">User Name<br>
+                                                <small>Logged in @*@foreach ($user->activity()->where('message', 'Logged In.')->latest()->take(1)->get() as $a) { { $a->created_at->format("M d, H:m:s") } } @endforeach*@</small>
+                                            </td>
+                                            <td>User Email</td>
+                                            <td>@*@foreach ($user->activity()->where('message', 'Logged In.')->latest()->take(1)->get() as $a) { { $a->ip_address } } @endforeach*@</td>
+                                            <td>@*@foreach ($user->roles()->pluck('name') as $role) <span class="badge badge-secondary">{ ucfirst($role) }}</span>@endforeach*@</td>
+                                        </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <!-- <div class="card-header">
+                        <h5 class="m-0">Last registred users</h5>
+                    </div> -->
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Last registred users</h5>
+                        <table class="table table-striped table-bordered1 table-sm table-borderless">
+                            <tbody>
+                                @*@foreach ($last_users as $user)
+                                <tr>
+                                    <td><img class="img-avatar rounded-circle" src="{ $user->getMedia('user-image')->last() ? asset($user->getMedia('user-image')->last()->getUrl('avatar')) : asset('assets/img/default-user-image.png') }}" alt="{ $user->first_name }} { $user->last_name }}"></td>
+                                    <td>
+                                        <a href="{ route('admin.users.show', $user->id) }}" class="name-link">{ $user->first_name }} { $user->last_name }}</a><br>
+                                        <small>{ $user->created_at->format("M d, Y H:i:s") }}</small>
+                                    </td>
+                                </tr>
+                                @endforeach*@
+                                <tr>
+                                    <td><img class="img-avatar rounded-circle" src="~/assets/img/default-user-image.png" alt="User Name"></td>
+                                    <td>
+                                        <a href="/admin/users/id" class="name-link">User Name</a><br>
+                                        <small>User Created at</small>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

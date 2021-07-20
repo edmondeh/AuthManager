@@ -1,7 +1,9 @@
 ﻿using AuthManager.Application.Constants;
 using AuthManager.Application.Enums;
+using AuthManager.Application.Interfaces.Shared;
 using AuthManager.Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -41,7 +43,11 @@ namespace AuthManager.Infrastructure.Identity.Seeds
                 LastName = "Hashani",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
-                IsActive = true
+                IsActive = true,
+                CreatedOn = DateTime.Now,
+                CreatedBy = "Default",
+                LastModifiedOn = DateTime.Now,
+                LastModifiedBy = "Default"
             };
             if (userManager.Users.All(u => u.Id != defaultUser.Id))
             {

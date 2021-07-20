@@ -107,7 +107,7 @@
 
                     <p>
                         @Model.FirstName @Model.LastName - Bio
-                        <small>Member since 2 weaks ago.</small>
+                        <small>Member since @Model.CreatedOn.ToString("MMM, yyyy.")</small>
                     </p>
                 </li>
                 <!-- <li class="user-body">

@@ -35,12 +35,12 @@ namespace AuthManager.Infrastructure.DbContexts
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedOn = _dateTime.NowUtc;
+                        entry.Entity.CreatedOn = _dateTime.Now;
                         entry.Entity.CreatedBy = _authenticatedUser.UserId;
                         break;
 
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedOn = _dateTime.NowUtc;
+                        entry.Entity.LastModifiedOn = _dateTime.Now;
                         entry.Entity.LastModifiedBy = _authenticatedUser.UserId;
                         break;
                 }

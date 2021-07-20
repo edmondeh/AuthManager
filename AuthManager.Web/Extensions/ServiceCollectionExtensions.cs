@@ -61,6 +61,7 @@ namespace AuthManager.Web.Extensions
         {
             services.AddTransient<IDateTimeService, SystemDateTimeService>();
             services.AddTransient<IAuthenticatedUserService, AuthenticatedUserService>();
+            services.AddTransient<ITotalUsersService, TotalUsersService>();
         }
     }
 }

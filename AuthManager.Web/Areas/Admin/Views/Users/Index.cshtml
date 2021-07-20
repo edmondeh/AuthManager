@@ -1,0 +1,150 @@
+﻿@model IEnumerable<UserViewModel>;
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Users";
+}
+
+@section Css
+{
+    <link href="~/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/assets/plugins/datatables-select/css/select.bootstrap4.min.css" rel="stylesheet" />
+}
+
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2 ml-1">
+                <div class="col-sm-6 row">
+                    <h1 class="m-0 text-dark">@ViewData["Title"]</h1>
+                    <a class="btn btn-outline-primary ml-2" href="/admin/users/create" role="button">Add new</a>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Dashboard">Home</a></li>
+                        <li class="breadcrumb-item active">Users</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            @(await Component.InvokeAsync<ErrorViewComponent>())
+
+            <div class="card card-primary1 card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">All @ViewData["Title"]</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body table-responsive p-0" style="overflow-x:auto;">
+                    <table class="table table-striped table-hover table-sm1 datatable dt-select table-borderless">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
+                                <!-- <th width="6%">#</th> -->
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>More</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model)
+                            {
+                            <tr data-entry-id="@user.Id">
+                                <td></td>
+                                <!-- <td>@user.Id</td> -->
+                                <td><img class="img-size rounded-circle" src="~/assets/img/default-user-image.png" alt="Avatar">@user.FullName</td>
+                                <td>@user.Email</td>
+                                <td>@*@foreach ($user->roles()->pluck('name') as $role)               <span class="badge badge-secondary">{ ucfirst($role) }}</span>@endforeach*@</td>
+                                <td>@if (user.IsActive == false) {<span class="badge badge-danger">Inactive</span>} else if(user.EmailConfirmed == false) {<span class="badge badge-warning">Unconfirmed</span>} else if(user.IsActive == true){<span class="badge badge-success">Active</span>}</td>
+                                <td>
+                                    <a asp-area="Admin" asp-controller="Users" asp-action="Details" asp-route-id="@user.Id" class="info"><i class="fas fa-info-circle fa-lg"></i></a>
+                                    <a asp-area="Admin" asp-controller="Users" asp-route-id="@user.Id" asp-action="Edit" class="edit"><i class="fas fa-cog fa-lg"></i></a>
+                                    <form method="POST" asp-area="Admin" asp-controller="Users" asp-route-id="@user.Id" asp-action="Delete" accept-charset="UTF-8" style="display: inline-block;" id="@user.Id">
+                                        <a href="javascript:void(0)" class="delete" onclick="confirmDelete(@user.Id)"><i class="fas fa-times-circle fa-lg"></i></a>
+                                    </form>
+                                </td>
+                            </tr>
+                            }
+                    </table>
+                </div>
+                <!--  <div class="card-footer">
+                  Footer
+                </div> -->
+            </div>
+        </div>
+
+    </section>
+    <div class="modal fade" id="modal_ajax">
+        <div class="modal-dialog mw-100 w-50">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Auth Manager</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="height:auto; overflow:auto;">
+                    <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+<script src="~/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="~/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="~/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="~/assets/plugins/jszip/jszip.min.js"></script>
+<script src="~/assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="~/assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="~/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>t>
+<script src="~/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="~/assets/plugins/datatables-select/js/dataTables.select.min.js"></script>
+<script src="~/assets/plugins/datatables-select/js/select.bootstrap4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.all.min.js"></script>
+<script>
+  function confirmDelete(id) {
+    event.preventDefault();
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if(result.value) {
+        $('form[id='+id+']').submit();
+      }
+    });
+  }
+  @*@can('users_delete_all')*@
+  window._token = '{{ csrf_token() }}';
+  window.route_mass_crud_entries_destroy = '/admin/dashboard/users_mass_destroy';
+  @*@endcan*@
+</script>
+}

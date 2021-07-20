@@ -1024,3 +1024,6 @@ D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net
 D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Views\Shared\Components\SideBar\Default.cshtml.g.cs
 D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Views\Shared\_Scripts.cshtml.g.cs
 D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Views\Shared\_Styles.cshtml.g.cs
+D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\Index.cshtml.g.cs
+D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
+D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\Details.cshtml.g.cs

@@ -27,6 +27,13 @@ using AuthManager.Web.Models;
 #line hidden
 #nullable disable
 #nullable restore
+#line 3 "D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\Views\_ViewImports.cshtml"
+using AuthManager.Infrastructure.Identity.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\Views\Shared\_Layout.cshtml"
 using AuthManager.Web.Views.Shared.Components.NavBar;
 
@@ -48,7 +55,7 @@ using AuthManager.Web.Views.Shared.Components.Footer;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"05cc4c9860a23902196f5136190378e382c87e2b", @"/Views/Shared/_Layout.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a70ff518b5508ca52de2930b946e4c32cc5050ea", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5b818227700dcb980596e6e638a08fffeeed12c8", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__Layout : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("name", "_Styles", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -81,7 +88,7 @@ using AuthManager.Web.Views.Shared.Components.Footer;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("<!DOCTYPE html>\r\n<html lang=\"en\">\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "05cc4c9860a23902196f5136190378e382c87e2b5114", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "05cc4c9860a23902196f5136190378e382c87e2b5338", async() => {
                 WriteLiteral(@"
     <meta charset=""utf-8"">
     <meta name=""viewport"" content=""width=device-width, initial-scale=1"">
@@ -97,7 +104,7 @@ using AuthManager.Web.Views.Shared.Components.Footer;
 #line hidden
 #nullable disable
                 WriteLiteral("</title>\r\n\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "05cc4c9860a23902196f5136190378e382c87e2b5938", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "05cc4c9860a23902196f5136190378e382c87e2b6162", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();
@@ -132,7 +139,7 @@ Write(await RenderSectionAsync("Css", required: false));
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "05cc4c9860a23902196f5136190378e382c87e2b8100", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "05cc4c9860a23902196f5136190378e382c87e2b8324", async() => {
                 WriteLiteral("\r\n    <div class=\"wrapper\">\r\n\r\n        ");
 #nullable restore
 #line 20 "D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\Views\Shared\_Layout.cshtml"
@@ -167,7 +174,7 @@ Write(await RenderSectionAsync("Css", required: false));
 #line hidden
 #nullable disable
                 WriteLiteral("\r\n    </div>\r\n    \r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "05cc4c9860a23902196f5136190378e382c87e2b9576", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "05cc4c9860a23902196f5136190378e382c87e2b9800", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();
