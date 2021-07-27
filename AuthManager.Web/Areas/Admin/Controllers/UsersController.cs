@@ -45,15 +45,15 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         }
 
         // GET: UsersController/Details/5
-        [HttpGet("[area]/[controller]/{id?}")]
+        [HttpGet("[area]/[controller]/{id?}/show")]
         public async Task<IActionResult> Details(string id)
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
-            var userVM = _mapper.Map<UserViewModel>(user);
+            var userVm = _mapper.Map<UserViewModel>(user);
 
-            userVM.RoleNames = await _userManager.GetRolesAsync(user);
+            userVm.RoleNames = await _userManager.GetRolesAsync(user);
 
-            return View(userVM);
+            return View(userVm);
         }
 
         // GET: UsersController/Create

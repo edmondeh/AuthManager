@@ -1,4 +1,4 @@
-﻿@model AuthManager.Infrastructure.Identity.Models.ApplicationUser 
+﻿@inject IAuthenticatedUserService authenticatedUser
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -98,7 +98,7 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 @*<img src="{ Auth::user()->getMedia('user-image')->last() ? asset(Auth::user()->getMedia('user-image')->last()->getUrl('avatar')) : asset('assets/img/default-user-image.png') }}" class="user-image img-circle elevation-2" alt="User Image">*@
                 <img src="~/assets/img/default-user-image.png" class="user-image img-circle elevation-2" alt="User Image" />
-                <span class="d-none d-md-inline">@Model.FirstName @Model.LastName</span>
+                <span class="d-none d-md-inline">@authenticatedUser.FullName</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <li class="user-header bg-primary">
@@ -106,8 +106,8 @@
                     <img src="~/assets/img/default-user-image.png" class="img-circle elevation-2" alt="User Image" />
 
                     <p>
-                        @Model.FirstName @Model.LastName - Bio
-                        <small>Member since @Model.CreatedOn.ToString("MMM, yyyy.")</small>
+                        @authenticatedUser.FullName - Bio
+                        <small>Member since @authenticatedUser.CreatedOn.ToString("MMM, yyyy.")</small>
                     </p>
                 </li>
                 <!-- <li class="user-body">

@@ -187,7 +187,7 @@
                                         <div>
                                             <button type="button" id="printBtn" class="btn btn-default">Print</button>
                                             <a asp-area="Admin" asp-controller="Users" asp-route-id="@Model.Id" asp-action="Edit" class="btn btn-default">Edit</a>
-                                            <form method="POST" asp-area="Admin" asp-controller="Users" asp-route-id="@Model.Id" asp-action="Delete" accept-charset="UTF-8" style="display: inline-block;" onsubmit="return confirm(&#039;Are you sure?&#039;);">
+                                            <form method="POST" asp-area="Admin" asp-controller="Users" asp-route-id="@Model.Id" asp-action="Delete" accept-charset="UTF-8" style="display: inline-block;" onsubmit="return confirm('Are you sure?');">
                                                 <button class="btn btn-danger" type="submit"> Delete</button>
                                             </form>
                                         </div>

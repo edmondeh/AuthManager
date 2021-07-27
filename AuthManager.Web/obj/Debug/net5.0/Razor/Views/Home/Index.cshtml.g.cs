@@ -33,8 +33,15 @@ using AuthManager.Infrastructure.Identity.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "D:\Visual Studio Projects\source\repos\AuthManager\AuthManager.Web\Views\_ViewImports.cshtml"
+using AuthManager.Application.Interfaces.Shared;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"99464617055fdb505bb0bb7fd91f9b14f7b0d030", @"/Views/Home/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5b818227700dcb980596e6e638a08fffeeed12c8", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"aa3be8b0b09ea34b73a0f59254e4ebea637f54fe", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998
