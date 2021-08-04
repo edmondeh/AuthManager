@@ -16,10 +16,12 @@ namespace AuthManager.Web.Areas.Admin.Controllers
     public class UsersController : BaseController<UsersController>
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UsersController(UserManager<ApplicationUser> userManager)
+        public UsersController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         // GET: UsersController
@@ -79,9 +81,15 @@ namespace AuthManager.Web.Areas.Admin.Controllers
 
         // GET: UsersController/Edit/5
         [HttpGet("[area]/[controller]/{id?}/[action]")]
-        public ActionResult Edit(string id)
+        public async Task<IActionResult> Edit(string id)
         {
-            return View();
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            var userVm = _mapper.Map<UserViewModel>(user);
+
+            userVm.RoleNames = await _userManager.GetRolesAsync(user);
+            ViewBag.Roles = await _roleManager.Roles.ToListAsync();
+
+            return View(userVm);
         }
 
         // POST: UsersController/Edit/5

@@ -10,6 +10,9 @@ namespace AuthManager.Web.Areas.Admin.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
+        public string Bio { get; set; }
         public bool IsActive { get; set; } = true;
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
@@ -17,6 +20,7 @@ namespace AuthManager.Web.Areas.Admin.Models
         public byte[] ProfilePicture { get; set; }
         public bool EmailConfirmed { get; set; }
         public IEnumerable<string> RoleNames { get; set; }
+        public IEnumerable<string> NewRoleNames { get; set; }
         public DateTime CreatedOn { get; set; }
 
         public string FullName
