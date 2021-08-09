@@ -11,8 +11,8 @@
 
     <title>Auth Manager • @ViewData["Title"]</title>
 
-    <partial name="_Styles" />
     @await RenderSectionAsync("Css", required: false)
+    <partial name="_Styles" />
 </head>
 <body class="hold-transition sidebar-mini pace-primary">
     <div class="wrapper">
@@ -26,8 +26,11 @@
 
         @(await Component.InvokeAsync<FooterViewComponent>())
     </div>
-    
-    <partial name="_Scripts" />
+
+    <script src="~/assets/plugins/jquery/jquery.min.js"></script>
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    @await Component.InvokeAsync("Notyf")
     @await RenderSectionAsync("Scripts", required: false)
+    <partial name="_Scripts" />
 </body>
 </html>

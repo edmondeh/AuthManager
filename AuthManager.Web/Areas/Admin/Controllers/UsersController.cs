@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace AuthManager.Web.Areas.Admin.Controllers
@@ -59,9 +60,10 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         }
 
         // GET: UsersController/Create
+        [HttpGet("[area]/[controller]/{id?}/create")]
         public ActionResult Create()
         {
-            return View();
+            return View(new UserViewModel());
         }
 
         // POST: UsersController/Create
@@ -93,17 +95,40 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         }
 
         // POST: UsersController/Edit/5
-        [HttpPost]
+        [HttpPost("[area]/[controller]/{id?}/[action]")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(string id, [FromForm] UserViewModel user)
         {
             try
             {
+                if (ModelState.IsValid)
+                {
+                    if (id != user.Id)
+                    {
+                        return NotFound();
+                    }
+                    var _user = await _userManager.FindByIdAsync(user.Id);
+                    if (_user == null)
+                    {
+                        return NotFound();
+                    }
+                    MailAddress address = new MailAddress(user.Email);
+                    _user.FirstName = user.FirstName;
+                    _user.LastName = user.LastName;
+                    _user.Email = address.Address;
+                    var roles = await _userManager.GetRolesAsync(_user);
+                    var newRoles = user.NewRoleNames;
+                    await _userManager.RemoveFromRolesAsync(_user, roles);
+                    await _userManager.AddToRolesAsync(_user, newRoles);
+
+                    _notify.Success($"Account for {_user.Email} has updated.");
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                _notify.Error("Something error hapend.");
+                return View(user);
             }
         }
 

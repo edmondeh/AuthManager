@@ -34,6 +34,7 @@
                 <div class="col-md-7">
                     <div class="card card-primary card-outline1">
                         <form method="POST" asp-area="Admin" asp-controller="Users" asp-route-id="@Model.Id" asp-action="Edit" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="@Model.Id" />
                             <div class="card-header">
                                 <h3 class="card-title">@ViewData["Title"]</h3>
 
