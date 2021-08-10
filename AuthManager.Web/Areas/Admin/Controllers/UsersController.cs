@@ -1,4 +1,5 @@
-﻿using AuthManager.Infrastructure.Identity.Models;
+﻿using AuthManager.Application.Enums;
+using AuthManager.Infrastructure.Identity.Models;
 using AuthManager.Web.Abstractions;
 using AuthManager.Web.Areas.Admin.Models;
 using Microsoft.AspNetCore.Http;
@@ -61,23 +62,57 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         }
 
         // GET: UsersController/Create
-        [HttpGet("[area]/[controller]/{id?}/create")]
-        public ActionResult Create()
+        [HttpGet("[area]/[controller]/create")]
+        public async Task<IActionResult> Create()
         {
+            ViewBag.Roles = await _roleManager.Roles.ToListAsync();
             return View(new UserViewModel());
         }
 
         // POST: UsersController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create([FromForm] UserViewModel user)
         {
             try
             {
+                if (ModelState.IsValid)
+                {
+                    MailAddress address = new MailAddress(user.Email);
+                    string userName = address.User;
+                    var _user = new ApplicationUser
+                    {
+                        UserName = userName,
+                        Email = user.Email,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        EmailConfirmed = true,
+                        IsActive = user.IsActive
+                    };
+                    var result = await _userManager.CreateAsync(_user, user.Password);
+                    if (result.Succeeded)
+                    {
+                        if (user.RoleNames is null)
+                            await _userManager.AddToRoleAsync(_user, Roles.User.ToString());
+                        await _userManager.AddToRolesAsync(_user, user.NewRoleNames);
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(_user);
+                        //var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+                        //var allUsersExceptCurrentUser = await _userManager.Users.Where(a => a.Id != currentUser.Id).ToListAsync();
+                        //var users = _mapper.Map<IEnumerable<UserViewModel>>(allUsersExceptCurrentUser);
+                        _notify.Success($"Account for {user.Email} created.");
+                        return RedirectToAction(nameof(Index));
+                    }
+                    foreach (var error in result.Errors)
+                    {
+                        _notify.Error(error.Description);
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                _notify.Error("Some Error Happend.");
                 return View();
             }
         }
@@ -113,7 +148,7 @@ namespace AuthManager.Web.Areas.Admin.Controllers
                     {
                         return NotFound();
                     }
-                    if (user.Password != null || user.ConfirmPassword != null)
+                    if (user.Password != null && user.ConfirmPassword != null)
                     {
                         string token = await _userManager.GeneratePasswordResetTokenAsync(_user);
                         var result = await _userManager.ResetPasswordAsync(_user, token, user.Password);
