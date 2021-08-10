@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace AuthManager.Web.Areas.Admin.Controllers
@@ -112,16 +113,38 @@ namespace AuthManager.Web.Areas.Admin.Controllers
                     {
                         return NotFound();
                     }
-                    MailAddress address = new MailAddress(user.Email);
-                    _user.FirstName = user.FirstName;
-                    _user.LastName = user.LastName;
-                    _user.Email = address.Address;
-                    var roles = await _userManager.GetRolesAsync(_user);
-                    var newRoles = user.NewRoleNames;
-                    await _userManager.RemoveFromRolesAsync(_user, roles);
-                    await _userManager.AddToRolesAsync(_user, newRoles);
+                    if (user.Password != null || user.ConfirmPassword != null)
+                    {
+                        string token = await _userManager.GeneratePasswordResetTokenAsync(_user);
+                        var result = await _userManager.ResetPasswordAsync(_user, token, user.Password);
+                        if (!result.Succeeded)
+                        {
+                            _notify.Error("Something error hapend.");
+                            return View(user);
+                        }
+                        _notify.Success($"Password for {_user.Email} has updated.");
+                    }
+                    else
+                    {
+                        MailAddress address = new MailAddress(user.Email);
+                        _user.FirstName = user.FirstName;
+                        _user.LastName = user.LastName;
+                        _user.Email = address.Address;
+                        var roles = await _userManager.GetRolesAsync(_user);
+                        var newRoles = user.NewRoleNames;
+                        await _userManager.RemoveFromRolesAsync(_user, roles);
+                        await _userManager.AddToRolesAsync(_user, newRoles);
+                        _notify.Success($"Account for {_user.Email} has updated.");
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
 
-                    _notify.Success($"Account for {_user.Email} has updated.");
+                foreach (var modelState in ModelState.Values)
+                {
+                    foreach (var error in modelState.Errors)
+                    {
+                        _notify.Error(error.ErrorMessage);
+                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
