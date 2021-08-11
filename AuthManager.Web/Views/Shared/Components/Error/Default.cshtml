@@ -3,11 +3,9 @@
 <div class="alert alert-danger alert-important" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     @Html.ValidationMessage("Error")
-    @*<ol>
     @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
     {
-        <li>@error.ErrorMessage</li>
+        @error.ErrorMessage<br />
     }
-    </ol>*@
 </div>
 }

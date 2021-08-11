@@ -33,7 +33,7 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         {
             var allUsersWithRoles = new List<UserViewModel>();
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var allUsersExceptCurrentUser = await _userManager.Users.Where(a => a.Id != currentUser.Id).ToListAsync();
+            var allUsersExceptCurrentUser = await _userManager.Users.Where(a => a.Id != currentUser.Id).OrderByDescending(a => a.CreatedOn).ToListAsync();
 
             foreach (var user in allUsersExceptCurrentUser)
             {
@@ -82,33 +82,40 @@ namespace AuthManager.Web.Areas.Admin.Controllers
                     string userName = address.User;
                     var _user = new ApplicationUser
                     {
-                        UserName = userName,
                         Email = user.Email,
                         FirstName = user.FirstName,
                         LastName = user.LastName,
                         EmailConfirmed = true,
-                        IsActive = user.IsActive
+                        IsActive = user.IsActive,
+                        UserName = userName,
+                        CreatedOn = DateTime.Now,
+                        CreatedBy = User.Identity.Name,
+                        LastModifiedOn = DateTime.Now,
+                        LastModifiedBy = User.Identity.Name
                     };
+                    await GetRoles();
                     var result = await _userManager.CreateAsync(_user, user.Password);
                     if (result.Succeeded)
                     {
-                        if (user.RoleNames is null)
+                        if (user.NewRoleNames is null)
                             await _userManager.AddToRoleAsync(_user, Roles.User.ToString());
-                        await _userManager.AddToRolesAsync(_user, user.NewRoleNames);
+                        else
+                            await _userManager.AddToRolesAsync(_user, user.NewRoleNames);
                         var code = await _userManager.GenerateEmailConfirmationTokenAsync(_user);
-                        //var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-                        //var allUsersExceptCurrentUser = await _userManager.Users.Where(a => a.Id != currentUser.Id).ToListAsync();
-                        //var users = _mapper.Map<IEnumerable<UserViewModel>>(allUsersExceptCurrentUser);
                         _notify.Success($"Account for {user.Email} created.");
                         return RedirectToAction(nameof(Index));
                     }
                     foreach (var error in result.Errors)
                     {
-                        _notify.Error(error.Description);
+                        if (error.Code == "DuplicateUserName")
+                            ModelState.AddModelError("DuplicateEmail", "This email address is already taken.");
+                        else
+                            ModelState.AddModelError(error.Code, error.Description);
                     }
-                    return RedirectToAction(nameof(Index));
+                    return View(user);
                 }
-                return RedirectToAction(nameof(Index));
+                await GetRoles();
+                return View(user);
             }
             catch
             {
@@ -191,24 +198,52 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         }
 
         // GET: UsersController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
         // POST: UsersController/Delete/5
-        [HttpPost]
+        [HttpPost("[area]/[controller]/{id?}/[action]")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(string id)
         {
             try
             {
+                if (id == null)
+                {
+                    return NotFound();
+                }
+
+                var _user = await _userManager.FindByIdAsync(id);
+                if (_user != null)
+                {
+                    var result = await _userManager.DeleteAsync(_user);
+                    if (result.Succeeded)
+                    {
+                        _notify.Success("Succesfully deleted user with email " + _user.Email + ".");
+                    }
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(error.Code, error.Description);
+                        _notify.Error(error.Description);
+                    }
+                }
+                else
+                    _notify.Error("An Error hapend.");
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                _notify.Error("An Error hapend.");
+                return RedirectToAction(nameof(Index));
             }
+        }
+        
+        // GetRoles
+        public async Task GetRoles()
+        {
+            ViewBag.Roles = await _roleManager.Roles.ToListAsync();
         }
     }
 }

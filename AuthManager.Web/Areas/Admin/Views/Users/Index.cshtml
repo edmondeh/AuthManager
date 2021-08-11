@@ -76,7 +76,7 @@
                                     <a asp-area="Admin" asp-controller="Users" asp-action="Details" asp-route-id="@user.Id" class="info"><i class="fas fa-info-circle fa-lg"></i></a>
                                     <a asp-area="Admin" asp-controller="Users" asp-route-id="@user.Id" asp-action="Edit" class="edit"><i class="fas fa-cog fa-lg"></i></a>
                                     <form method="POST" asp-area="Admin" asp-controller="Users" asp-route-id="@user.Id" asp-action="Delete" accept-charset="UTF-8" style="display: inline-block;" id="@user.Id">
-                                        <a href="javascript:void(0)" class="delete" onclick="confirmDelete(@user.Id)"><i class="fas fa-times-circle fa-lg"></i></a>
+                                        <a href="javascript:void(0)" class="delete" onclick="confirmDelete('@user.Id')"><i class="fas fa-times-circle fa-lg"></i></a>
                                     </form>
                                 </td>
                             </tr>
@@ -121,7 +121,7 @@
 <script src="~/assets/plugins/jszip/jszip.min.js"></script>
 <script src="~/assets/plugins/pdfmake/pdfmake.min.js"></script>
 <script src="~/assets/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="~/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>t>
+<script src="~/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="~/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="~/assets/plugins/datatables-select/js/dataTables.select.min.js"></script>
 <script src="~/assets/plugins/datatables-select/js/select.bootstrap4.min.js"></script>
