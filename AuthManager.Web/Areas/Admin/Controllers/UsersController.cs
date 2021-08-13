@@ -5,6 +5,7 @@ using AuthManager.Web.Areas.Admin.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -140,54 +141,35 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         // POST: UsersController/Edit/5
         [HttpPost("[area]/[controller]/{id?}/[action]")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [FromForm] UserViewModel user)
+        public async Task<IActionResult> Edit(string id, [FromForm] UserEditViewModel user)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     if (id != user.Id)
-                    {
                         return NotFound();
-                    }
                     var _user = await _userManager.FindByIdAsync(user.Id);
                     if (_user == null)
-                    {
                         return NotFound();
-                    }
-                    if (user.Password != null && user.ConfirmPassword != null)
-                    {
-                        string token = await _userManager.GeneratePasswordResetTokenAsync(_user);
-                        var result = await _userManager.ResetPasswordAsync(_user, token, user.Password);
-                        if (!result.Succeeded)
-                        {
-                            _notify.Error("Something error hapend.");
-                            return View(user);
-                        }
-                        _notify.Success($"Password for {_user.Email} has updated.");
-                    }
-                    else
-                    {
-                        MailAddress address = new MailAddress(user.Email);
-                        _user.FirstName = user.FirstName;
-                        _user.LastName = user.LastName;
-                        _user.Email = address.Address;
-                        var roles = await _userManager.GetRolesAsync(_user);
-                        var newRoles = user.NewRoleNames;
-                        await _userManager.RemoveFromRolesAsync(_user, roles);
-                        await _userManager.AddToRolesAsync(_user, newRoles);
-                        _notify.Success($"Account for {_user.Email} has updated.");
-                    }
+
+                    MailAddress address = new MailAddress(user.Email);
+                    _user.FirstName = user.FirstName;
+                    _user.LastName = user.LastName;
+                    _user.Email = address.Address;
+                    var roles = await _userManager.GetRolesAsync(_user);
+                    var newRoles = user.NewRoleNames;
+                    await _userManager.RemoveFromRolesAsync(_user, roles);
+                    await _userManager.AddToRolesAsync(_user, newRoles);
+                    _notify.Success($"Account for {_user.Email} has updated.");
+
                     return RedirectToAction(nameof(Index));
                 }
 
                 foreach (var modelState in ModelState.Values)
-                {
                     foreach (var error in modelState.Errors)
-                    {
                         _notify.Error(error.ErrorMessage);
-                    }
-                }
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -196,6 +178,82 @@ namespace AuthManager.Web.Areas.Admin.Controllers
                 return View(user);
             }
         }
+
+
+        // POST: UsersController/Edit/5
+        [HttpPost("[area]/[controller]/{id?}/[action]")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPassword(string id, [FromForm] string Password, string ConfirmPassword)
+        {
+            try
+            {
+                if (Password != ConfirmPassword)
+                    ModelState.AddModelError("ConfirmPassword", "The password and confirmation password do not match.");
+
+                var _user = await _userManager.FindByIdAsync(id);
+                if (_user is null)
+                    return NotFound();
+                var user = _mapper.Map<UserViewModel>(_user);
+                user.RoleNames = await _userManager.GetRolesAsync(_user);
+                await GetRoles();
+                if (Password != ConfirmPassword)
+                    return View("/Areas/Admin/Views/Users/Edit.cshtml", user);
+
+                string token = await _userManager.GeneratePasswordResetTokenAsync(_user);
+                var result = await _userManager.ResetPasswordAsync(_user, token, Password);
+
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                        ModelState.AddModelError(error.Code, error.Description);
+                    _notify.Error("Error");
+                    return View("/Areas/Admin/Views/Users/Edit.cshtml", user);
+                }
+
+                _notify.Success($"Password for {_user.Email} has updated.");
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                _notify.Error("Something error hapend.");
+                return View("/Areas/Admin/Views/Users/Edit.cshtml");
+            }
+        }
+
+        // POST: UsersController/Edit/5
+        [HttpPost("[area]/[controller]/{id?}/[action]")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditStatus(string id, [FromForm] bool IsActive)
+        {
+            try
+            {
+                var _user = await _userManager.FindByIdAsync(id);
+                if (_user is null)
+                    return NotFound();
+                _user.IsActive = IsActive;
+                var result = await _userManager.UpdateAsync(_user);
+
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                        ModelState.AddModelError(error.Code, error.Description);
+                    _notify.Error("Error");
+                    var user = _mapper.Map<UserViewModel>(_user);
+                    user.RoleNames = await _userManager.GetRolesAsync(_user);
+                    await GetRoles();
+                    return View("/Areas/Admin/Views/Users/Edit.cshtml", user);
+                }
+
+                _notify.Success($"Status for {_user.Email} has been updated.");
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                _notify.Error("Something error hapend.");
+                return View("/Areas/Admin/Views/Users/Edit.cshtml");
+            }
+        }
+
 
         // GET: UsersController/Delete/5
         //public ActionResult Delete(int id)
@@ -210,10 +268,8 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         {
             try
             {
-                if (id == null)
-                {
+                if (id is null)
                     return NotFound();
-                }
 
                 var _user = await _userManager.FindByIdAsync(id);
                 if (_user != null)
@@ -239,7 +295,7 @@ namespace AuthManager.Web.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-        
+
         // GetRoles
         public async Task GetRoles()
         {
