@@ -66,7 +66,7 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         [HttpGet("[area]/[controller]/create")]
         public async Task<IActionResult> Create()
         {
-            ViewBag.Roles = await _roleManager.Roles.ToListAsync();
+            await GetRoles();
             return View(new UserViewModel());
         }
 
@@ -141,11 +141,14 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         // POST: UsersController/Edit/5
         [HttpPost("[area]/[controller]/{id?}/[action]")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [FromForm] UserEditViewModel user)
+        public async Task<IActionResult> Edit(string id, [FromForm] UserViewModel user)
         {
             try
             {
-                if (ModelState.IsValid)
+                ModelState.Clear();
+                user.Password = "Password1";
+                user.ConfirmPassword = "Password1";
+                if (TryValidateModel(user))
                 {
                     if (id != user.Id)
                         return NotFound();
@@ -183,35 +186,43 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         // POST: UsersController/Edit/5
         [HttpPost("[area]/[controller]/{id?}/[action]")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPassword(string id, [FromForm] string Password, string ConfirmPassword)
+        public async Task<IActionResult> EditPassword(string id, [FromForm] UserViewModel user)
         {
             try
             {
-                if (Password != ConfirmPassword)
-                    ModelState.AddModelError("ConfirmPassword", "The password and confirmation password do not match.");
-
-                var _user = await _userManager.FindByIdAsync(id);
-                if (_user is null)
-                    return NotFound();
-                var user = _mapper.Map<UserViewModel>(_user);
-                user.RoleNames = await _userManager.GetRolesAsync(_user);
-                await GetRoles();
-                if (Password != ConfirmPassword)
-                    return View("/Areas/Admin/Views/Users/Edit.cshtml", user);
-
-                string token = await _userManager.GeneratePasswordResetTokenAsync(_user);
-                var result = await _userManager.ResetPasswordAsync(_user, token, Password);
-
-                if (!result.Succeeded)
+                ModelState.Clear();
+                user.FirstName = "User";
+                user.LastName = "User";
+                user.Email = "user@gmail.com";
+                if (TryValidateModel(user))
                 {
-                    foreach (var error in result.Errors)
-                        ModelState.AddModelError(error.Code, error.Description);
-                    _notify.Error("Error");
-                    return View("/Areas/Admin/Views/Users/Edit.cshtml", user);
+
+                    var _user = await _userManager.FindByIdAsync(id);
+                    if (_user is null)
+                        return NotFound();
+
+                    string token = await _userManager.GeneratePasswordResetTokenAsync(_user);
+                    var result = await _userManager.ResetPasswordAsync(_user, token, user.Password);
+
+                    if (!result.Succeeded)
+                    {
+                        foreach (var error in result.Errors)
+                            ModelState.AddModelError(error.Code, error.Description);
+                        _notify.Error("Error");
+                        //var user = _mapper.Map<UserViewModel>(_user);
+                        user.RoleNames = await _userManager.GetRolesAsync(_user);
+                        await GetRoles();
+                        return View("/Areas/Admin/Views/Users/Edit.cshtml", user);
+                    }
+
+                    _notify.Success($"Password for {_user.Email} has updated.");
+                    return RedirectToAction(nameof(Index));
                 }
 
-                _notify.Success($"Password for {_user.Email} has updated.");
-                return RedirectToAction(nameof(Index));
+                var _user1 = await _userManager.FindByIdAsync(id);
+                user.RoleNames = await _userManager.GetRolesAsync(_user1);
+                await GetRoles();
+                return View("/Areas/Admin/Views/Users/Edit.cshtml", user);
             }
             catch
             {
@@ -276,9 +287,7 @@ namespace AuthManager.Web.Areas.Admin.Controllers
                 {
                     var result = await _userManager.DeleteAsync(_user);
                     if (result.Succeeded)
-                    {
                         _notify.Success("Succesfully deleted user with email " + _user.Email + ".");
-                    }
                     foreach (var error in result.Errors)
                     {
                         ModelState.AddModelError(error.Code, error.Description);
