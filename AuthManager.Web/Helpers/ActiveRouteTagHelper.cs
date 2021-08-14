@@ -101,10 +101,12 @@ namespace AuthManager.Web.Helpers
                     return false;
                 }
 
-                if (!string.IsNullOrWhiteSpace(Action) && Action.ToLower() != currentAction.ToLower())
-                {
-                    return false;
-                }
+                //if (!string.IsNullOrWhiteSpace(Action) && Action.ToLower() != currentAction.ToLower())
+                //{
+                //    return false;
+                //}
+
+                return true;
             }
 
             if (Page != null)

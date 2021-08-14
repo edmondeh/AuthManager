@@ -1,3 +1,4 @@
+using AspNetCoreHero.Extensions.Logging;
 using AuthManager.Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -44,6 +45,7 @@ namespace AuthManager.Web
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+            .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

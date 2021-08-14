@@ -1,4 +1,4 @@
-﻿@model List<UserViewModel>;
+﻿@model List<UserViewModel>
 
 @{
     Layout = "_Layout";
@@ -145,7 +145,7 @@
   }
   @*@can('users_delete_all')*@
   window._token = '{{ csrf_token() }}';
-  window.route_mass_crud_entries_destroy = '/admin/dashboard/users_mass_destroy';
+  window.route_mass_crud_entries_destroy = '/admin/users/users_mass_destroy';
   @*@endcan*@
 </script>
 }

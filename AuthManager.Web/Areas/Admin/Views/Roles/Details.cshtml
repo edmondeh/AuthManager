@@ -1,0 +1,64 @@
+﻿@model RoleViewModel
+@{
+    Layout = "";
+    ViewData["Title"] = $"{Model.Name}";
+}
+
+<link href="~/assets/css/adminlte.min.css" rel="stylesheet" />
+<link href="~/assets/css/style.css" rel="stylesheet" />
+<script src="~/assets/plugins/jquery/jquery.min.js"></script>
+<script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/js/adminlte.min.js"></script>
+<script src="~/assets/js/main.js"></script>
+
+<div class="modal-header">
+    <h4 class="modal-title">Auth Manger • @Model.Name</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body table-responsive p-0" style="max-height: 650px; overflow: auto;">
+     <div class="row1">
+        <div class="col-md-12">
+            <h2 class="mt-4 t-c">@Model.Name</h2>
+        </div>
+        <br>
+    </div> 
+    <table class="table table-hover1 table-striped table-borderless table-sm1">
+        <thead>
+            <tr>
+                <th class="col-sm-4">Col</th>
+                <th>Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Name: </td>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <td>Users: </td>
+                <td>@Model.NumberOfUsers</td>
+            </tr>
+            @*<tr>
+                <td>List users: </td>
+                <td>@if ($role->users->count() > 0) @foreach ($role->users as $user) <a href="{ route('admin.users.show', $user->id) }}" style="display: block;">{ $user->first_name }} { $user->last_name }}</a> @endforeach @else N/A @endif</td>
+            </tr>
+            <tr>
+                <td>Permissions: </td>
+                <td>@if ($role->permissions()->count() > 0) @foreach ($role->permissions()->pluck('name') as $permission) <span class="badge badge-secondary">{ $permission }}</span>@endforeach @else N/A @endif</td>
+            </tr>*@
+            @*<tr>
+                <td>Created at:</td>
+                <td>{ $role->created_at->toFormattedDateString() }} { $role->created_at->toTimeString() }}</td>
+            </tr>
+            <tr>
+                <td>Last modified at:</td>
+                <td>{ $role->updated_at->toFormattedDateString() }} { $role->updated_at->toTimeString() }}</td>*@
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer justify-content-between1">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>

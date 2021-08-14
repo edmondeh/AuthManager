@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -118,8 +119,9 @@ namespace AuthManager.Web.Areas.Admin.Controllers
                 await GetRoles();
                 return View(user);
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error($"Error: {ex.Message}");
                 _notify.Error("Some Error Happend.");
                 return View();
             }
@@ -160,6 +162,8 @@ namespace AuthManager.Web.Areas.Admin.Controllers
                     _user.FirstName = user.FirstName;
                     _user.LastName = user.LastName;
                     _user.Email = address.Address;
+                    _user.LastModifiedOn = DateTime.Now;
+                    _user.LastModifiedBy = User.Identity.Name;
                     var roles = await _userManager.GetRolesAsync(_user);
                     var newRoles = user.NewRoleNames;
                     await _userManager.RemoveFromRolesAsync(_user, roles);
@@ -215,6 +219,10 @@ namespace AuthManager.Web.Areas.Admin.Controllers
                         return View("/Areas/Admin/Views/Users/Edit.cshtml", user);
                     }
 
+                    _user.LastModifiedOn = DateTime.Now;
+                    _user.LastModifiedBy = User.Identity.Name;
+                    await _userManager.UpdateAsync(_user);
+
                     _notify.Success($"Password for {_user.Email} has updated.");
                     return RedirectToAction(nameof(Index));
                 }
@@ -242,6 +250,8 @@ namespace AuthManager.Web.Areas.Admin.Controllers
                 if (_user is null)
                     return NotFound();
                 _user.IsActive = IsActive;
+                _user.LastModifiedOn = DateTime.Now;
+                _user.LastModifiedBy = User.Identity.Name;
                 var result = await _userManager.UpdateAsync(_user);
 
                 if (!result.Succeeded)
