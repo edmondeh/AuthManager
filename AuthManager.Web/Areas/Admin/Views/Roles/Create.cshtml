@@ -1,0 +1,100 @@
+﻿@model RoleViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Add a new role";
+}
+
+@section Css {
+    <link href="~/assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Roles</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Home</a></li>
+                        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Roles" asp-action="Index">Roles</a></li>
+                        <li class="breadcrumb-item active">Add a new role</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            @(await Component.InvokeAsync<ErrorViewComponent>())
+            <div class="card card-primary1 card-outline">
+                <form asp-area="Admin" asp-controller="Roles" asp-action="Create">
+                    <div class="card-header">
+                        <h3 class="card-title">@ViewData["Title"]</h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label asp-for="@Model.Name" class="col-sm-2 col-form-label t-r">Name: *</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="name" asp-for="@Model.Name" placeholder="Name" required>
+                                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        @*<div class="form-group row">
+                        <label for="permissions" class="col-sm-2 col-form-label t-r">Permissions: *</label>
+                        <div class="col-sm-9">
+                            <select class="form-control select2" multiple="multiple" name="permissions[]">
+                                @if (old('permissions'))
+                                    @foreach (old('permissions') as $p)
+                                    @foreach ($permissions as $permission)
+                                    <option { $p == $permission->name ? 'selected':'' }} value="{ $permission->name }}">{ $permission->name }}</option>
+                                    @endforeach
+                                    @endforeach
+                                    @else
+                                    @foreach ($permissions as $permission)
+                                    <option value="{ $permission->name }}">{ $permission->name }}</option>
+                                    @endforeach
+                                    @endif
+                                </select>
+                                @if ($errors->has('permissions'))
+                                <small class="offset-sm-3 form-text text-muted pl-3">
+                                    { $errors->first('permissions') }}
+                                </small>
+                                @endif
+                        </div>
+                    </div>*@
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-outline-success">Create</button>
+                        <button onclick="goBack()" class="btn btn-default">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts
+{
+    <script src="~/assets/plugins/select2/js/select2.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script>
+        $(function () {
+            $("input[data-bootstrap-switch]").each(function () {
+                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+            });
+
+        })
+    </script>
+}

@@ -64,7 +64,7 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         }
 
         // GET: UsersController/Create
-        [HttpGet("[area]/[controller]/create")]
+        [HttpGet("[area]/[controller]/[action]")]
         public async Task<IActionResult> Create()
         {
             await GetRoles();
@@ -72,7 +72,7 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         }
 
         // POST: UsersController/Create
-        [HttpPost]
+        [HttpPost("[area]/[controller]/[action]")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromForm] UserViewModel user)
         {

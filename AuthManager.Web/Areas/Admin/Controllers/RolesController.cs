@@ -55,20 +55,36 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         }
 
         // GET: RolesController/Create
-        [HttpGet("[area]/[controller]/create")]
+        [HttpGet("[area]/[controller]/[action]")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: RolesController/Create
-        [HttpPost]
+        [HttpPost("[area]/[controller]/[action]")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create([FromForm] RoleViewModel role)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (!ModelState.IsValid)
+                    return View(role);
+
+                //var _role = _mapper.Map<IdentityRole>(role);
+                var _role = new IdentityRole
+                {
+                    Name = role.Name
+                };
+                var result = await _roleManager.CreateAsync(_role);
+                if (result.Succeeded)
+                {
+                    _notify.Success($"Role with name: {_role.Name} created.");
+                    return RedirectToAction(nameof(Index));
+                }
+                foreach (var error in result.Errors)
+                    ModelState.AddModelError(error.Code, error.Description);
+                return View(role);
             }
             catch
             {
