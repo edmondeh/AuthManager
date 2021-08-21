@@ -44,9 +44,9 @@ namespace AuthManager.Web.Areas.Admin.Controllers
 
         // GET: RolesController/Details/5
         [HttpGet("[area]/[controller]/{id?}/show")]
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            var role = await _roleManager.Roles.FirstOrDefaultAsync(r => r.Id == id);
+            var role = await _roleManager.Roles.FirstOrDefaultAsync(r => r.Id == id.ToString());
             var roleVm = _mapper.Map<RoleViewModel>(role);
             var allUserRoles = await _context.UserRoles.ToListAsync();
             roleVm.NumberOfUsers = allUserRoles.Count(ur => ur.RoleId == roleVm.Id);
@@ -93,19 +93,44 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         }
 
         // GET: RolesController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet("[area]/[controller]/{id?}/[action]")]
+        public async Task<IActionResult> Edit(Guid id)
         {
-            return View();
+            if (id.ToString() is null)
+                return NotFound();
+            var role = await _roleManager.Roles.FirstOrDefaultAsync(r => r.Id == id.ToString());
+            if (role is null)
+                return NotFound();
+            var roleVm = _mapper.Map<RoleViewModel>(role);
+            return View(roleVm);
         }
 
         // POST: RolesController/Edit/5
-        [HttpPost]
+        [HttpPost("[area]/[controller]/{id?}/[action]")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(Guid id, [FromForm] RoleViewModel role)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                //if (id != role.Id)
+                if(id.Equals(role.Id))
+                    return NotFound();
+                if (!ModelState.IsValid)
+                    return NotFound();
+                var _role = await _roleManager.FindByIdAsync(id.ToString());
+                _role.Name = role.Name;
+                var result = await _roleManager.UpdateAsync(_role);
+
+                if (result.Succeeded)
+                {
+                    _notify.Success($"Succesfully updated!");
+                    return RedirectToAction(nameof(Index));
+                }
+                foreach (var error in result.Errors)
+                    ModelState.AddModelError(error.Code, error.Description);
+
+                //PopulateRolesPermissionsDropDownList(role.Permissions);
+                return View(role);
             }
             catch
             {
@@ -114,18 +139,35 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         }
 
         // GET: RolesController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
         // POST: RolesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(Guid id, IFormCollection collection)
         {
             try
             {
+                if (id.ToString() is null)
+                    return NotFound();
+
+                var _role = await _roleManager.FindByIdAsync(id.ToString());
+                if (_role != null)
+                {
+                    var result = await _roleManager.DeleteAsync(_role);
+                    if (result.Succeeded)
+                        _notify.Success("Succesfully deleted role with name " + _role.Name + ".");
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(error.Code, error.Description);
+                        _notify.Error(error.Description);
+                    }
+                }
+                else
+                    _notify.Error("An Error hapend.");
                 return RedirectToAction(nameof(Index));
             }
             catch

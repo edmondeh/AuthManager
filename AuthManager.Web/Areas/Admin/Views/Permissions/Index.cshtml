@@ -1,8 +1,8 @@
-﻿@model List<RoleViewModel>
+﻿@model IEnumerable<string>
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Roles";
+    ViewData["Title"] = "Permissions";
 }
 
 @section Css
@@ -18,12 +18,12 @@
             <div class="row mb-2 ml-1">
                 <div class="col-sm-6 row">
                     <h1 class="m-0 text-dark">@ViewData["Title"]</h1>
-                    <a class="btn btn-outline-primary ml-2" asp-area="Admin" asp-controller="Roles" asp-action="Create" role="button">Add a new role</a>
+                    <a class="btn btn-outline-primary ml-2" asp-area="Admin" asp-controller="Permissions" asp-action="Create" role="button">Add a new</a>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Home</a></li>
-                        <li class="breadcrumb-item active">Roles</li>
+                        <li class="breadcrumb-item active">Permissions</li>
                     </ol>
                 </div>
             </div>
@@ -52,25 +52,25 @@
                             <tr>
                                 <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                                 <th>Name</th>
-                                <th>Users with this role</th>
                                 <th class="more">More</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var role in Model)
+                            @{ var id = 0; }
+                            @foreach (var permission in Model)
                             {
-                                <tr data-entry-id="@role.Id">
-                                    <td></td>
-                                    <td>@role.Name</td>
-                                    <td>@role.NumberOfUsers</td>
-                                    <td>
-                                        <a href="javascript:void(0)" onclick="showAjaxModal('/Admin/roles/@role.Id/show');" class="info"><i class="fas fa-info-circle fa-lg"></i></a>
-                                        <a asp-area="Admin" asp-controller="Roles" asp-route-id="@role.Id" asp-action="Edit" class="edit"><i class="fas fa-cog fa-lg"></i></a>
-                                        <form asp-area="Admin" asp-controller="Roles" asp-route-id="@role.Id" asp-action="Delete" accept-charset="UTF-8" style="display: inline-block;" id="@role.Id">
-                                            <a href="javascript:void(0)" class="delete" onclick="confirmDelete('@role.Id')"><i class="fas fa-times-circle fa-lg"></i></a>
-                                        </form>
-                                    </td>
-                                </tr>
+                                id++;
+                            <tr data-entry-id="@id">
+                                <td></td>
+                                <td>@permission</td>
+                                <td>
+                                    <a href="javascript:void(0)" onclick="showAjaxModal('/admin/permissions/@permission/show');" class="info"><i class="fas fa-info-circle fa-lg"></i></a>
+                                    <a asp-area="Admin" asp-controller="Permissions" asp-route-id="@permission" asp-action="Edit" class="edit"><i class="fas fa-cog fa-lg"></i></a>
+                                    <form asp-area="Admin" asp-controller="Permissions" asp-route-id="@permission" asp-action="Delete" accept-charset="UTF-8" style="display: inline-block;" id="@id">
+                                        <a href="javascript:void(0)" class="delete" onclick="confirmDelete('@id')"><i class="fas fa-times-circle fa-lg"></i></a>
+                                    </form>
+                                </td>
+                            </tr>
                             }
                     </table>
                 </div>
@@ -79,10 +79,9 @@
                 </div> -->
             </div>
         </div>
-
     </section>
     <div class="modal fade" id="modal_ajax">
-        <div class="modal-dialog">
+        <div class="modal-dialog mw-100 w-50">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Auth Manager • </h4>
@@ -119,6 +118,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.all.min.js"></script>
     <script>
   window._token = '{{ csrf_token() }}';
-  window.route_mass_crud_entries_destroy = '/admin/roles/roles_mass_destroy';
+  window.route_mass_crud_entries_destroy = '/admin/permissions/permissions_mass_destroy';
     </script>
 }

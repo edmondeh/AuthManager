@@ -31,6 +31,8 @@ namespace AuthManager.Web
 
                     await Infrastructure.Identity.Seeds.DefaultRoles.SeedAsync(userManager, roleManager);
                     await Infrastructure.Identity.Seeds.DefaultSuperAdminUser.SeedAsync(userManager, roleManager);
+                    await Infrastructure.Identity.Seeds.DefaultAdminUser.SeedAsync(userManager, roleManager);
+                    await Infrastructure.Identity.Seeds.DefaultModeratorUser.SeedAsync(userManager, roleManager);
                     await Infrastructure.Identity.Seeds.DefaultBasicUser.SeedAsync(userManager, roleManager);
                     logger.LogInformation("Finished Seeding Default Data");
                     logger.LogInformation("Application Starting");

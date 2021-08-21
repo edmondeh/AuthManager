@@ -10,24 +10,11 @@ using System.Threading.Tasks;
 
 namespace AuthManager.Infrastructure.Identity.Seeds
 {
-    public static class DefaultSuperAdminUser
+    public static class DefaultAdminUser
     {
-        public static async Task AddPermissionClaim(this RoleManager<IdentityRole> roleManager, IdentityRole role, string module)
+        private async static Task SeedClaimsForAdmin(this RoleManager<IdentityRole> roleManager)
         {
-            var allClaims = await roleManager.GetClaimsAsync(role);
-            var allPermissions = Permissions.GeneratePermissionsForModule(module);
-            foreach (var permission in allPermissions)
-            {
-                if (!allClaims.Any(a => a.Type == "Permission" && a.Value == permission))
-                {
-                    await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, permission));
-                }
-            }
-        }
-
-        private async static Task SeedClaimsForSuperAdmin(this RoleManager<IdentityRole> roleManager)
-        {
-            var adminRole = await roleManager.FindByNameAsync("SuperAdmin");
+            var adminRole = await roleManager.FindByNameAsync("Admin");
             await roleManager.AddPermissionClaim(adminRole, "Dashboard");
             await roleManager.AddPermissionClaim(adminRole, "Users");
             await roleManager.AddPermissionClaim(adminRole, "Roles");
@@ -39,10 +26,10 @@ namespace AuthManager.Infrastructure.Identity.Seeds
             //Seed Default User
             var defaultUser = new ApplicationUser
             {
-                UserName = "superadmin",
-                Email = "superadmin@gmail.com",
-                FirstName = "Edmond",
-                LastName = "Hashani",
+                UserName = "admin",
+                Email = "admin@gmail.com",
+                FirstName = "Admin",
+                LastName = "User",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
                 IsActive = true,
@@ -58,11 +45,9 @@ namespace AuthManager.Infrastructure.Identity.Seeds
                 {
                     await userManager.CreateAsync(defaultUser, "Password1.");
                     await userManager.AddToRoleAsync(defaultUser, Roles.User.ToString());
-                    await userManager.AddToRoleAsync(defaultUser, Roles.Moderator.ToString());
                     await userManager.AddToRoleAsync(defaultUser, Roles.Admin.ToString());
-                    await userManager.AddToRoleAsync(defaultUser, Roles.SuperAdmin.ToString());
                 }
-                await roleManager.SeedClaimsForSuperAdmin();
+                await roleManager.SeedClaimsForAdmin();
             }
         }
     }

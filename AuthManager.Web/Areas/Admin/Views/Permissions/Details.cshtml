@@ -1,0 +1,56 @@
+﻿@model RoleClaimsViewModel
+@{
+    Layout = "";
+    ViewData["Title"] = $"{Model.Type}";
+}
+
+<link href="~/assets/css/adminlte.min.css" rel="stylesheet" />
+<link href="~/assets/css/style.css" rel="stylesheet" />
+<script src="~/assets/plugins/jquery/jquery.min.js"></script>
+<script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/js/adminlte.min.js"></script>
+<script src="~/assets/js/main.js"></script>
+
+<div class="modal-header">
+    <h4 class="modal-title">Auth Manger • @Model.Type</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body table-responsive p-0" style="max-height: 650px; overflow:auto;">
+    <!-- <div class="row">
+        <div class="col-md-12">
+            <h2 class="mt-4 t-c">@Model.Value</h2>
+        </div>
+        <br>
+    </div> -->
+    <table class="table table-hover1 table-striped table-borderless">
+        <thead>
+            <tr>
+                <th class="col-sm-4">Col</th>
+                <th>Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Type: </td>
+                <td>@Model.Type</td>
+            </tr>
+            <tr>
+                <td>Value: </td>
+                <td>@Model.Value</td>
+            </tr>
+            @*<tr>
+                <td>Created at:</td>
+                <td>{ $permission->created_at->toFormattedDateString() }} { $permission->created_at->toTimeString() }}</td>
+            </tr>
+            <tr>
+                <td>Last modified at:</td>
+                <td>{ $permission->updated_at->toFormattedDateString() }} { $permission->updated_at->toTimeString() }}</td>
+            </tr>*@
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer justify-content-between1">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>

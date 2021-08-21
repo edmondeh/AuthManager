@@ -1,0 +1,101 @@
+﻿@model PermissionEditViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Edit";
+}
+
+@section Css {
+    <link href="~/assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Permissions</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Home</a></li>
+                        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Permissions" asp-action="Index">Permissions</a></li>
+                        <li class="breadcrumb-item active">Edit a Permission</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            @(await Component.InvokeAsync<ErrorViewComponent>())
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary card-outline1">
+                        <form asp-area="Admin" asp-controller="Permissions" asp-route-id="@Model.ClaimValue" asp-action="Edit">
+                            <div class="card-header">
+                                <h3 class="card-title">@ViewData["Title"]</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label asp-for="@Model.Module" class="col-sm-2 col-form-label t-r">Module: *</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control select2" asp-for="@Model.Module" required>
+                                            <option value="NoModule" selected>No Module</option>
+                                            @foreach (var module in ViewBag.Modules)
+                                            {
+                                                if (module.Equals(Model.Module))
+                                                {
+                                                    <option value="@module" selected>@module</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@module">@module</option>
+                                                }
+                                            }
+                                        </select>
+                                        <span asp-validation-for="@Model.Module" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="@Model.Value" class="col-sm-2 col-form-label t-r">Name: *</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" id="name" asp-for="@Model.Value" placeholder="Name" required>
+                                        <span asp-validation-for="@Model.Value" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success">Update</button>
+                                <button onclick="goBack()" class="btn btn-default">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts
+{
+    <script src="~/assets/plugins/select2/js/select2.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script>
+        $(function () {
+            $("input[data-bootstrap-switch]").each(function () {
+                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+            });
+
+        })
+    </script>
+}
