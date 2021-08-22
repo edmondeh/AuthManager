@@ -10,17 +10,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AuthManager.Web.Helpers;
+using AuthManager.Infrastructure.Shared.Services;
+using AuthManager.Infrastructure.Identity.Models;
 
 namespace AuthManager.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class RolesController : BaseController<RolesController>
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IdentityContext _context;
 
-        public RolesController(RoleManager<IdentityRole> roleManager, IdentityContext context)
+        public RolesController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IdentityContext context)
         {
+            _userManager = userManager;
             _roleManager = roleManager;
             _context = context;
         }
@@ -47,11 +51,12 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         [HttpGet("[area]/[controller]/{id?}/show")]
         public async Task<IActionResult> Details(Guid id)
         {
-            var role = await _roleManager.Roles.FirstOrDefaultAsync(r => r.Id == id.ToString());
+            var role = await _roleManager.FindByIdAsync(id.ToString());
             var roleVm = _mapper.Map<RoleViewModel>(role);
             var allUserRoles = await _context.UserRoles.ToListAsync();
+            var users = _userManager.GetUsersInRoleAsync
             roleVm.NumberOfUsers = allUserRoles.Count(ur => ur.RoleId == roleVm.Id);
-
+            ViewBag.Permissions = await GetPermissions(role.Name);
             return View(roleVm);
         }
 
@@ -75,13 +80,13 @@ namespace AuthManager.Web.Areas.Admin.Controllers
                     return View(role);
 
                 //var _role = _mapper.Map<IdentityRole>(role);
-                var _role = new IdentityRole { Name = role.Name };
+                var _role = new IdentityRole { Name = TextService.UpperCase(role.Name) };
                 var result = await _roleManager.CreateAsync(_role);
                 if (result.Succeeded)
                 {
-                    foreach(var permission in role.Permissions)
+                    foreach (var permission in role.Permissions)
                     {
-                        await _roleManager.AddPermissionClaim(_role, permission);
+                        await _roleManager.AddPermissionClaim(_role, $"Permissions.{permission}");
                     }
                     _notify.Success($"Role with name: {_role.Name} created.");
                     return RedirectToAction(nameof(Index));
@@ -119,16 +124,21 @@ namespace AuthManager.Web.Areas.Admin.Controllers
             try
             {
                 //if (id != role.Id)
-                if(id.Equals(role.Id))
+                if (id.Equals(role.Id))
                     return NotFound();
                 if (!ModelState.IsValid)
                     return NotFound();
                 var _role = await _roleManager.FindByIdAsync(id.ToString());
-                _role.Name = role.Name;
+                _role.Name = TextService.UpperCase(role.Name);
                 var result = await _roleManager.UpdateAsync(_role);
 
                 if (result.Succeeded)
                 {
+                    var claims = await _roleManager.GetClaimsAsync(_role);
+                    foreach (var claim in claims)
+                        await _roleManager.RemoveClaimAsync(_role, claim);
+                    foreach (var permission in role.Permissions)
+                        await _roleManager.AddPermissionClaim(_role, $"Permissions.{permission}");
                     _notify.Success($"Succesfully updated!");
                     return RedirectToAction(nameof(Index));
                 }
