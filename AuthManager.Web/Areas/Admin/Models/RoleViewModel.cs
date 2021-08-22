@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AuthManager.Web.Areas.Admin.Models
 {
@@ -8,5 +9,6 @@ namespace AuthManager.Web.Areas.Admin.Models
         [Required]
         public string Name { get; set; }
         public int NumberOfUsers { get; set; }
+        public IList<string> Permissions { get; set; }
     }
 }

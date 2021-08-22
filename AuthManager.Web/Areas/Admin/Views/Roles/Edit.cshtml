@@ -57,24 +57,12 @@
                                 <div class="form-group row">
                                     <label for="permissions" class="col-sm-2 col-form-label t-r">Permissions: *</label>
                                     <div class="col-sm-9">
-                                        @*<select class="form-control select2" multiple="multiple" required="" name="permissions[]">
-                                                @if (old('permissions'))
-                                                    @foreach (old('permissions') as $p)
-                                                    @foreach ($permissions as $permission)
-                                                    <option { $p == $permission->name ? 'selected':'' }} value="{ $permission->name }}">{ $permission->name }}</option>
-                                                    @endforeach
-                                                    @endforeach
-                                                    @else
-                                                    @foreach ($permissions as $permission)
-                                                    <option @foreach($role->permissions as $p){ $p->name == $permission->name ? 'selected':'' }}@endforeach value="{ $permission->name }}">{ $permission->name }}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>*@
-                                        @*@if ($errors->has('permissions'))
-                                            <small class="offset-sm-2 form-text text-muted pl-3">
-                                                { $errors->first('permissions') }}
-                                            </small>
-                                            @endif*@
+                                        <select class="form-control select2" multiple="multiple" required="" asp-for="@Model.Permissions">
+                                            @foreach (var permission in ViewBag.Permissions)
+                                            {
+                                                <option value="@permission">@permission</option>
+                                            }
+                                        </select>
                                     </div>
                                 </div>
                             </div>

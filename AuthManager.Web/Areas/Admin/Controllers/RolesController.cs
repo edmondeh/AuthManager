@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AuthManager.Web.Helpers;
 
 namespace AuthManager.Web.Areas.Admin.Controllers
 {
@@ -56,9 +57,10 @@ namespace AuthManager.Web.Areas.Admin.Controllers
 
         // GET: RolesController/Create
         [HttpGet("[area]/[controller]/[action]")]
-        public ActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            await GetPermissions();
+            return View(new RoleViewModel());
         }
 
         // POST: RolesController/Create
@@ -68,17 +70,19 @@ namespace AuthManager.Web.Areas.Admin.Controllers
         {
             try
             {
+                await GetPermissions();
                 if (!ModelState.IsValid)
                     return View(role);
 
                 //var _role = _mapper.Map<IdentityRole>(role);
-                var _role = new IdentityRole
-                {
-                    Name = role.Name
-                };
+                var _role = new IdentityRole { Name = role.Name };
                 var result = await _roleManager.CreateAsync(_role);
                 if (result.Succeeded)
                 {
+                    foreach(var permission in role.Permissions)
+                    {
+                        await _roleManager.AddPermissionClaim(_role, permission);
+                    }
                     _notify.Success($"Role with name: {_role.Name} created.");
                     return RedirectToAction(nameof(Index));
                 }
@@ -102,6 +106,8 @@ namespace AuthManager.Web.Areas.Admin.Controllers
             if (role is null)
                 return NotFound();
             var roleVm = _mapper.Map<RoleViewModel>(role);
+            await GetPermissions();
+            roleVm.Permissions = await GetPermissions(role.Name);
             return View(roleVm);
         }
 
@@ -172,8 +178,45 @@ namespace AuthManager.Web.Areas.Admin.Controllers
             }
             catch
             {
-                return View();
+                return RedirectToAction(nameof(Index));
             }
+        }
+
+        /// <summary>
+        /// Get All Permissions
+        /// </summary>
+        /// <returns></returns>
+        private async Task GetPermissions()
+        {
+            //var permissions = _context.RoleClaims.ToList();
+            var role = await _roleManager.FindByNameAsync("SuperAdmin");
+            var permissions = await _roleManager.GetClaimsAsync(role);
+            var permissionsViewModel = new List<string>();
+            foreach (var permission in permissions)
+            {
+                string[] value = permission.Value.Split('.');
+                permissionsViewModel.Add($"{value[1]}.{value[2]}");
+            }
+            ViewBag.Permissions = permissionsViewModel;
+        }
+
+        /// <summary>
+        /// Get Permissions For Role
+        /// </summary>
+        /// <returns>List of string</returns>
+        private async Task<List<string>> GetPermissions(string roleName)
+        {
+            if (roleName is null)
+                return new List<string>();
+            var permissionsViewModel = new List<string>();
+            var role = await _roleManager.FindByNameAsync(roleName);
+            var permissions = await _roleManager.GetClaimsAsync(role);
+            foreach (var permission in permissions)
+            {
+                string[] value = permission.Value.Split('.');
+                permissionsViewModel.Add($"{value[1]}.{value[2]}");
+            }
+            return permissionsViewModel;
         }
     }
 }

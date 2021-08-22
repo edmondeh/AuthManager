@@ -174,7 +174,7 @@ namespace AuthManager.Web.Areas.Admin.Controllers
             }
             catch
             {
-                return View();
+                return RedirectToAction(nameof(Index));
             }
         }
     }
