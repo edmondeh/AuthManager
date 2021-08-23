@@ -54,9 +54,9 @@ namespace AuthManager.Web.Areas.Admin.Controllers
             var role = await _roleManager.FindByIdAsync(id.ToString());
             var roleVm = _mapper.Map<RoleViewModel>(role);
             var allUserRoles = await _context.UserRoles.ToListAsync();
-            var users = _userManager.GetUsersInRoleAsync
             roleVm.NumberOfUsers = allUserRoles.Count(ur => ur.RoleId == roleVm.Id);
             ViewBag.Permissions = await GetPermissions(role.Name);
+            ViewBag.Users = await _userManager.GetUsersInRoleAsync(role.Name);
             return View(roleVm);
         }
 

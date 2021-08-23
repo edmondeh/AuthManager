@@ -40,10 +40,10 @@
                 <td>Users: </td>
                 <td>@Model.NumberOfUsers</td>
             </tr>
-            @*<tr>
+            <tr>
                 <td>List users: </td>
-                <td>@if ($role->users->count() > 0) @foreach ($role->users as $user) <a href="{ route('admin.users.show', $user->id) }}" style="display: block;">{ $user->first_name }} { $user->last_name }}</a> @endforeach @else N/A @endif</td>
-            </tr>*@
+                <td>@if (ViewBag.Users.Count > 0) @foreach (var user in ViewBag.Users) { <a asp-area="Admin" asp-controller="Users" asp-route-id="@user.Id" style="display: block;">@user.FirstName @user.LastName</a> } else { Html.Raw("N / A"); }</td>
+            </tr>
             <tr>
                 <td>Permissions: </td>
                 <td>@if (ViewBag.Permissions.Count > 0)
